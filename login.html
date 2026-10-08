@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIA'O - Log In</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+ 
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (Sin pestañas activas) -->
+    <header class="navbar login-top-nav">
+        <div class="logo">FIA<span class="yellow-text">´O</span></div>
+        <nav class="nav-links">
+            <a href="js/index.html">Home</a>
+            <a href="js/credit.html">Credit</a>
+            <a href="js/products.html">Products</a>
+            <a href="js/clients.html">Clients</a>
+            <a href="js/reports.html">Reports</a>
+            <a href="js/contact.html">Contact</a>
+        </nav>
+    </header>
+ 
+    <!-- SECCIÓN PRINCIPAL DEL LOGIN -->
+    <main class="login-main-container">
+       
+        <!-- Columna Izquierda: Textos y Botón para volver al Home -->
+        <div class="login-info">
+            <div class="brand-title">FIA<span class="yellow-text">´O</span></div>
+            <h1>We are innovation with <span class="dark-red-text">purpose</span></h1>
+            <p class="subtitle">Technology at the service of small businesses</p>
+ 
+            <!-- Botón independiente en la página para volver al Home -->
+            <div style="margin-bottom: 30px;">
+                <a href="index.html" class="btn-back-home">← Back to Home</a>
+            </div>
+ 
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div>
+                        <h3>Total Control</h3>
+                        <p>Manage your inventory, sales, and debts all from one place</p>
+                    </div>
+                </div>
+ 
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <div>
+                        <h3>More Security</h3>
+                        <p>Digitize the credit and keep track of your customers safely</p>
+                    </div>
+                </div>
+ 
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <div>
+                        <h3>Better Relationships</h3>
+                        <p>Transparency and trust between you and your clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- Columna Derecha: Tarjeta Blanca del Formulario y Ventana Flotante a la Izquierda -->
+        <div class="login-right-area">
+           
+            <!-- SECCIÓN FLOTANTE DE RECUPERACIÓN (Ahora aparece flotando hacia la IZQUIERDA) -->
+            <div id="recoverySection" class="recovery-section-hidden">
+                <div class="recovery-card">
+                    <button type="button" class="close-recovery" id="closeRecovery">&times;</button>
+                    <h3>Password Recovery</h3>
+                    <p>Enter your email address to send a verification code.</p>
+                    <div class="recovery-inputs">
+                        <input type="email" name="email" id="recoveryEmail" placeholder="example@domain.com" autocomplete="email">
+                        <button type="button" class="btn-red-submit" onclick="enviarCodigo()">Send Code</button>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Tarjeta Principal de Login -->
+            <div class="login-card" id="loginCard">
+                <h2>Log In</h2>
+                <p class="card-subtitle">Enter your credentials</p>
+ 
+                <form>
+                    <!-- Email con autocompletado del dispositivo -->
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" name="email" id="loginEmail" placeholder="example@domain.com" autocomplete="email" required>
+                    </div>
+ 
+                    <!-- Password con ícono SVG limpio -->
+                    <div class="input-group">
+                        <label>Password</label>
+                        <div class="password-box-container">
+                            <input type="password" id="passwordField" placeholder="********" required>
+                            <span id="togglePassword" class="eye-icon" title="Show/Hide Password">
+                                <svg id="eyeSvg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </span>
+                        </div>
+                        <a href="#" id="forgotTrigger" class="forgot-password">You forgot your password?</a>
+                    </div>
+ 
+                    <button type="submit" class="btn-red-submit">Log In</button>
+ 
+                    <!-- reCAPTCHA simulado -->
+                    <div class="recaptcha-box" id="recaptchaBox" onclick="simularCaptcha()">
+                        <div class="recaptcha-left">
+                            <div class="spinner" id="captchaSpinner"></div>
+                            <input type="checkbox" id="robotCheck" disabled>
+                            <label for="robotCheck">I'm not a robot</label>
+                        </div>
+                        <div class="recaptcha-logo">
+                            <span>reCAPTCHA</span>
+                        </div>
+                    </div>
+ 
+                    <p class="signup-redirect">
+                        Don't you have an account? <a href="#">Sign Up</a>
+                    </p>
+                </form>
+            </div>
+ 
+        </div>
+ 
+    </main>
+ 
+    <!-- SCRIPTS DE INTERACTIVIDAD -->
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('passwordField');
+        const eyeSvg = document.getElementById('eyeSvg');
+ 
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+           
+            if (type === 'text') {
+                eyeSvg.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            } else {
+                eyeSvg.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        });
+ 
+        const forgotTrigger = document.getElementById('forgotTrigger');
+        const recoverySection = document.getElementById('recoverySection');
+        const closeRecovery = document.getElementById('closeRecovery');
+ 
+        forgotTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            recoverySection.style.display = 'block';
+        });
+ 
+        closeRecovery.addEventListener('click', () => {
+            recoverySection.style.display = 'none';
+        });
+ 
+        function enviarCodigo() {
+            const email = document.getElementById('recoveryEmail').value;
+            if(email) {
+                alert("Verification code successfully sent to: " + email + "!");
+                recoverySection.style.display = 'none';
+            } else {
+                alert("Please enter a valid email.");
+            }
+        }
+ 
+        function simularCaptcha() {
+            const spinner = document.getElementById('captchaSpinner');
+            const checkbox = document.getElementById('robotCheck');
+            const box = document.getElementById('recaptchaBox');
+ 
+            if(!checkbox.checked && !spinner.style.display) {
+                spinner.style.display = 'block';
+                box.style.pointerEvents = 'none';
+ 
+                setTimeout(() => {
+                    spinner.style.display = 'none';
+                    checkbox.checked = true;
+                    box.style.borderColor = '#46b8da';
+                    box.style.backgroundColor = '#e8f4f8';
+                }, 1500);
+            }
+        }
+    </script>
+ 
+</body>
+</html>
+ 
