@@ -1,0 +1,404 @@
+/* ========================================= */
+/* ESTILOS DE LOGIN Y NAVEGACIÓN FIA'O       */
+/* ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --color-rojo: #B91C1C;
+    --color-amarillo: #FFBF32;
+    --color-crema: #FEF3C7;
+    --color-cafe: #482D1F;
+    --color-blanco: #FFFFFF;
+    --font-principal: 'DM Sans', 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: var(--font-principal) !important;
+}
+
+body.login-body {
+    background-color: var(--color-crema) !important;
+    color: var(--color-cafe);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* BARRA DE NAVEGACIÓN REDONDEADA Y FLOTANTE */
+.login-top-nav {
+    background-color: #C02626 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 30px;
+    margin: 20px auto 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.login-top-nav .logo {
+    color: var(--color-blanco);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.login-top-nav .yellow-text {
+    color: var(--color-amarillo) !important;
+}
+
+.login-top-nav .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-top-nav .nav-links a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 22px;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+}
+
+.login-top-nav .nav-links a.active,
+.login-top-nav .nav-links a:first-child {
+    background-color: var(--color-amarillo);
+    color: var(--color-cafe);
+    font-weight: 700;
+}
+
+.login-top-nav .nav-links a:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* CONTENEDOR PRINCIPAL */
+.login-main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 80px;
+    max-width: 1250px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.login-info {
+    flex: 1;
+    padding-top: 10px;
+}
+
+.login-info .brand-title {
+    color: var(--color-rojo) !important;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.login-info .brand-title .yellow-text {
+    color: var(--color-amarillo) !important;
+}
+
+.login-info h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--color-cafe);
+    margin-bottom: 15px;
+}
+
+.login-info .dark-red-text {
+    color: var(--color-rojo);
+}
+
+.login-info .subtitle {
+    font-size: 15px;
+    color: #66554B;
+    margin-bottom: 25px;
+}
+
+.btn-back-home {
+    display: inline-block;
+    background-color: var(--color-amarillo);
+    color: var(--color-cafe);
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.btn-back-home:hover {
+    transform: translateY(-2px);
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-icon {
+    font-size: 20px;
+    background: var(--color-blanco);
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.feature-item h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-cafe);
+    margin: 0 0 3px 0;
+}
+
+.feature-item p {
+    font-size: 13px;
+    color: #66554B;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ÁREA DERECHA - TARJETA LOGIN */
+.login-right-area {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.login-card {
+    background-color: var(--color-blanco);
+    padding: 35px 40px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 410px;
+    box-shadow: 0 12px 35px rgba(72, 45, 31, 0.08);
+    z-index: 1;
+}
+
+.login-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-cafe);
+    margin: 0 0 5px 0;
+}
+
+.login-card .card-subtitle {
+    font-size: 13px;
+    color: #77665C;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-card .input-group {
+    margin-bottom: 18px;
+}
+
+.login-card .input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-cafe);
+    margin-bottom: 6px;
+}
+
+.login-card .input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #E2D9D2;
+    font-size: 14px;
+    outline: none;
+}
+
+.login-card .input-group input:focus {
+    border-color: var(--color-rojo);
+}
+
+.password-box-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-box-container input {
+    width: 100%;
+    padding-right: 45px !important;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: #88776C;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    z-index: 10;
+}
+
+.eye-icon:hover {
+    color: var(--color-rojo);
+}
+
+.login-card .forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 11px;
+    color: var(--color-rojo);
+    text-decoration: none;
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+.login-card .forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-card .btn-red-submit {
+    width: 100%;
+    background-color: var(--color-rojo);
+    color: var(--color-blanco);
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.login-card .btn-red-submit:hover {
+    background-color: #9B1616;
+}
+
+.login-card .recaptcha-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FAFAFA;
+    border: 1px solid #E0E0E0;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.recaptcha-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.login-card .recaptcha-logo {
+    font-size: 10px;
+    color: #777;
+}
+
+.login-card .signup-redirect {
+    text-align: center;
+    font-size: 12px;
+    color: #66554B;
+    margin-top: 20px;
+}
+
+.login-card .signup-redirect a {
+    color: var(--color-rojo);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-card .signup-redirect a:hover {
+    text-decoration: underline;
+}
+
+.recovery-section-hidden {
+    display: none;
+    position: absolute;
+    right: 430px;
+    top: 0;
+    width: 320px;
+    z-index: 10;
+}
+
+.recovery-card {
+    background-color: var(--color-blanco);
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border: 2px solid var(--color-rojo);
+    position: relative;
+}
+
+.close-recovery {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+}
+
+.recovery-card h3 {
+    color: var(--color-rojo);
+    font-size: 18px;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.recovery-card p {
+    font-size: 12px;
+    color: #66554B;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.recovery-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recovery-inputs input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #E2D9D2;
+    border-radius: 8px;
+    outline: none;
+}
