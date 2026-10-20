@@ -4,51 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIA'O - Digital Notebook</title>
-    <!-- Ruta al CSS principal -->
-    <link rel="stylesheet" href="asset/css/style.css">
-    <!-- Importación de las tipografías oficiales del branding desde Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="asset/css/global.css">
 </head>
-<body class="home-body">
+<body>
 
     <!-- BARRA DE NAVEGACIÓN FLOTANTE -->
     <header class="navbar main-top-nav">
-        <div class="logo">FIA<span class="yellow-text">´O</span></div>
+        <div class="logo">FIA<span class="yellow-text">'O</span></div>
         <nav class="nav-links">
-            <a href="#inicio" class="active">Home</a>
-            <a href="#credit">Credit</a>
-            <a href="#products">Products</a>
-            <a href="#clients">Clients</a>
-            <a href="#reports">Reports</a>
-            <a href="#contact">Contact</a>
+            <a href="index.html" class="active" data-en="Home" data-es="Inicio">Home</a>
+            <a href="about.html" data-en="About Us" data-es="Nosotros">About Us</a>
+            <a href="#credit" data-en="Credit" data-es="Créditos">Credit</a>
+            <a href="#products" data-en="Products" data-es="Productos">Products</a>
+            <a href="#clients" data-en="Clients" data-es="Clientes">Clients</a>
+            <a href="#reports" data-en="Reports" data-es="Reportes">Reports</a>
         </nav>
+
+        <!-- HERRAMIENTAS DE NAVEGACIÓN (Solo Idioma y Tema) -->
+        <div class="nav-actions">
+            <!-- Botón Traductor -->
+            <button id="langToggle" class="nav-btn-icon">🌐 <span id="langLabel">ES</span></button>
+            <!-- Botón Modo Oscuro/Claro -->
+            <button id="themeToggle" class="nav-btn-icon">🌙</button>
+            <!-- Contenedor reservado para el perfil post-login -->
+            <div id="userNavArea"></div>
+        </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL (HERO SECTION) -->
-    <main class="hero-container">
-        
-        <!-- Columna Izquierda: Textos y Botones -->
-        <div class="hero-text">
-            <h1>Your <span class="yellow-text">credit</span><br>notebook,<br>now digital.</h1>
-            <p>
-                FIA'O digitizes customer, debt, and payment management for convenience stores
-                and small businesses in Panama, replacing the traditional paper ledger with a
-                modern digital management system.
+    <!-- CONTENIDO PRINCIPAL (HERO) -->
+    <main style="display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; max-width: 1250px; margin: 0 auto; gap: 40px;">
+        <div style="flex: 1; max-width: 580px;">
+            <h1 style="font-size: 60px; font-weight: 700; line-height: 1.05; margin-bottom: 20px;">
+                Your <span class="yellow-text" data-en="credit notebook," data-es="libreta de crédito,">credit notebook,</span><br>
+                <span data-en="now digital." data-es="ahora digital.">now digital.</span>
+            </h1>
+            <p style="font-size: 16px; line-height: 1.5; opacity: 0.9; margin-bottom: 35px;"
+               data-en="FIA'O digitizes customer, debt, and payment management for convenience stores and small businesses in Panama, replacing the traditional paper ledger with a modern digital management system." 
+               data-es="FIA'O digitaliza la gestión de clientes, deudas y pagos para minisupermercados y pequeños negocios en Panamá, reemplazando la libreta de papel tradicional con un sistema de gestión digital moderno.">
+                FIA'O digitizes customer, debt, and payment management for convenience stores and small businesses in Panama, replacing the traditional paper ledger with a modern digital management system.
             </p>
-            <div class="hero-buttons">
-                <a href="login.html" class="btn-link"><button class="btn-login">Login</button></a>
-                <button class="btn-signup">Sign up</button>
+            
+            <!-- DOS BOTONES AMARILLOS ABAJO -->
+            <div style="display: flex; gap: 20px;">
+                <a href="login.html" style="text-decoration: none;">
+                    <button style="background-color: var(--color-amarillo); color: var(--color-cafe); border: none; padding: 12px 42px; border-radius: 30px; font-size: 15px; font-weight: 700; cursor: pointer;"
+                            data-en="Login" data-es="Iniciar Sesión">Login</button>
+                </a>
+                <a href="login.html" style="text-decoration: none;">
+                    <button style="background-color: var(--color-amarillo); color: var(--color-cafe); border: none; padding: 12px 42px; border-radius: 30px; font-size: 15px; font-weight: 700; cursor: pointer;"
+                            data-en="Sign up" data-es="Registrarse">Sign up</button>
+                </a>
             </div>
         </div>
-
-        <!-- Columna Derecha: Imagen del Teléfono -->
-        <div class="hero-image">
-            <img src="asset/img/movil.png" alt="FIA'O App en el teléfono">
+        <div style="flex: 1; display: flex; justify-content: center;">
+            <img src="asset/img/movil.png" alt="FIA'O App" style="max-width: 360px; filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));">
         </div>
-
     </main>
 
+    <!-- SCRIPT GLOBAL -->
+    <script src="asset/js/main.js"></script>
 </body>
 </html>

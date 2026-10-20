@@ -1,190 +1,150 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIA'O - Log In</title>
-    <!-- Enlace al archivo CSS en asset/css/login.css -->
+    <link rel="stylesheet" href="asset/css/global.css">
     <link rel="stylesheet" href="asset/css/login.css">
-    <!-- Fuentes oficiales: DM Sans y Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="login-body">
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR FLOTANTE -->
-    <header class="navbar login-top-nav">
-        <div class="logo">FIA<span class="yellow-text">´O</span></div>
+    <!-- BARRA DE NAVEGACIÓN IDÉNTICA A LA DEL INDEX -->
+    <header class="navbar main-top-nav">
+        <div class="logo">FIA<span class="yellow-text">'O</span></div>
         <nav class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="#">Credit</a>
-            <a href="#">Products</a>
-            <a href="#">Clients</a>
-            <a href="#">Reports</a>
-            <a href="#">Contact</a>
+            <a href="index.html" data-en="Home" data-es="Inicio">Home</a>
+            <a href="about.html" data-en="About Us" data-es="Nosotros">About Us</a>
+            <a href="index.html#credit" data-en="Credit" data-es="Créditos">Credit</a>
+            <a href="index.html#products" data-en="Products" data-es="Productos">Products</a>
+            <a href="index.html#clients" data-en="Clients" data-es="Clientes">Clients</a>
+            <a href="index.html#reports" data-en="Reports" data-es="Reportes">Reports</a>
         </nav>
+
+        <div class="nav-actions">
+            <button id="langToggle" class="nav-btn-icon">🌐 <span id="langLabel">ES</span></button>
+            <button id="themeToggle" class="nav-btn-icon">🌙</button>
+            <div id="userNavArea"></div>
+        </div>
     </header>
 
-    <!-- SECCIÓN PRINCIPAL DEL LOGIN -->
+    <!-- CONTENEDOR PRINCIPAL -->
     <main class="login-main-container">
         
-        <!-- Columna Izquierda -->
+        <!-- Lado Izquierdo: Información y Botón de Regresar -->
         <div class="login-info">
-            <div class="brand-title">FIA<span class="yellow-text">´O</span></div>
-            <h1>We are innovation with <span class="dark-red-text">purpose</span></h1>
-            <p class="subtitle">Technology at the service of small businesses</p>
+            <div class="brand-title">FIA<span class="yellow-text">'O</span></div>
+            <h1 data-en="We are innovation with purpose" data-es="Somos innovación con propósito">We are innovation with purpose</h1>
+            <p class="subtitle" data-en="Technology at the service of small businesses in Panama" data-es="Tecnología al servicio de pequeños negocios en Panamá">Technology at the service of small businesses in Panama</p>
 
+            <!-- Botón de Regresar al Inicio -->
             <div style="margin-bottom: 25px;">
-                <a href="index.html" class="btn-back-home">← Back to Home</a>
+                <a href="index.html" class="btn-back-home" data-en="&larr; Back to Home" data-es="&larr; Volver al Inicio">&larr; Back to Home</a>
             </div>
 
-            <div class="feature-list">
+            <div class="feature-list" style="margin-top: 20px;">
                 <div class="feature-item">
                     <div class="feature-icon">📊</div>
                     <div>
-                        <h3>Total Control</h3>
-                        <p>Manage your inventory, sales, and debts all from one place</p>
+                        <h3 data-en="Total Control" data-es="Control Total">Total Control</h3>
+                        <p data-en="Manage inventory, sales, and debts from one place." data-es="Administra inventario, ventas y deudas desde un lugar.">Manage inventory, sales, and debts from one place.</p>
                     </div>
                 </div>
-
                 <div class="feature-item">
                     <div class="feature-icon">🛡️</div>
                     <div>
-                        <h3>More Security</h3>
-                        <p>Digitize the credit and keep track of your customers safely</p>
-                    </div>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-icon">👥</div>
-                    <div>
-                        <h3>Better Relationships</h3>
-                        <p>Transparency and trust between you and your clients</p>
+                        <h3 data-en="Secure & Verified" data-es="Seguro y Verificado">Secure & Verified</h3>
+                        <p data-en="Encrypted transactions with ID verification." data-es="Transacciones cifradas con verificación de cédula.">Encrypted transactions with ID verification.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Columna Derecha -->
+        <!-- Lado Derecho: Tarjeta de Log In -->
         <div class="login-right-area">
-            
-            <!-- Ventana Flotante de Recuperación -->
-            <div id="recoverySection" class="recovery-section-hidden">
-                <div class="recovery-card">
-                    <button type="button" class="close-recovery" id="closeRecovery">&times;</button>
-                    <h3>Password Recovery</h3>
-                    <p>Enter your email address to send a verification code.</p>
-                    <div class="recovery-inputs">
-                        <input type="email" name="email" id="recoveryEmail" placeholder="example@domain.com">
-                        <button type="button" class="btn-red-submit" onclick="enviarCodigo()">Send Code</button>
-                    </div>
-                </div>
-            </div>
+            <div class="login-card">
+                <h2 data-en="Log In" data-es="Iniciar Sesión">Log In</h2>
+                <p class="card-subtitle" data-en="Enter your credentials to access" data-es="Ingresa tus credenciales para acceder">Enter your credentials to access</p>
 
-            <!-- Tarjeta Principal de Login -->
-            <div class="login-card" id="loginCard">
-                <h2>Log In</h2>
-                <p class="card-subtitle">Enter your credentials</p>
-
-                <form onsubmit="event.preventDefault();">
+                <form id="loginForm" onsubmit="executeLogin(event)">
+                    
+                    <!-- Campo 1: Cédula -->
                     <div class="input-group">
-                        <label for="loginEmail">Email</label>
-                        <input type="email" name="email" id="loginEmail" placeholder="example@domain.com" required>
+                        <label data-en="ID Number (Cédula)" data-es="Número de Cédula">ID Number (Cédula)</label>
+                        <input type="text" id="loginIdNumber" placeholder="8-123-4567" required>
                     </div>
 
+                    <!-- Campo 2: Correo -->
                     <div class="input-group">
-                        <label for="passwordField">Password</label>
+                        <label data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="example@domain.com" required>
+                    </div>
+
+                    <!-- Campo 3: Contraseña con el ojito interactivo SVG -->
+                    <div class="input-group">
+                        <label data-en="Password" data-es="Contraseña">Password</label>
                         <div class="password-box-container">
-                            <input type="password" id="passwordField" placeholder="********" required>
-                            <span id="togglePassword" class="eye-icon" title="Show/Hide Password">
-                                <svg id="eyeSvg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
+                            <input type="password" id="loginPassword" placeholder="********" required>
+                            <span class="password-toggle-icon" onclick="toggleLoginPassView()">
+                                <svg id="loginEyeIconSvg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path id="loginEyePath" d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                    <line id="loginEyeSlashLine" x1="1" y1="1" x2="23" y2="23"></line>
                                 </svg>
                             </span>
                         </div>
-                        <a href="#" id="forgotTrigger" class="forgot-password">You forgot your password?</a>
+                        <a href="#" onclick="showRecoveryModal(event)" class="forgot-password" data-en="Forgot password?" data-es="¿Olvidaste tu contraseña?">Forgot password?</a>
                     </div>
 
-                    <button type="submit" class="btn-red-submit">Log In</button>
+                    <!-- Botón de Envío -->
+                    <button type="submit" class="btn-red-submit" data-en="Log In" data-es="Iniciar Sesión">Log In</button>
 
-                    <div class="recaptcha-box" id="recaptchaBox" onclick="simularCaptcha()">
-                        <div class="recaptcha-left">
-                            <div class="spinner" id="captchaSpinner"></div>
-                            <input type="checkbox" id="robotCheck" disabled>
-                            <label for="robotCheck">I'm not a robot</label>
-                        </div>
-                        <div class="recaptcha-logo">
-                            <span>reCAPTCHA</span>
-                        </div>
-                    </div>
-
+                    <!-- Redirección a Registro -->
                     <p class="signup-redirect">
-                        Don't you have an account? <a href="#">Sign Up</a>
+                        <span data-en="Don't have an account?" data-es="¿No tienes una cuenta?">Don't have an account?</span> 
+                        <a href="register.html" data-en="Sign Up" data-es="Registrarse">Sign Up</a>
                     </p>
                 </form>
             </div>
-
         </div>
 
     </main>
 
+    <script src="asset/js/main.js"></script>
     <script>
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordField = document.getElementById('passwordField');
-        const eyeSvg = document.getElementById('eyeSvg');
+        // Función específica para alternar el ojito en el login
+        function toggleLoginPassView() {
+            const passInput = document.getElementById('loginPassword');
+            const slashLine = document.getElementById('loginEyeSlashLine');
 
-        togglePassword.addEventListener('click', function () {
-            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordField.setAttribute('type', type);
-            
-            if (type === 'text') {
-                eyeSvg.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                if (slashLine) slashLine.style.display = 'none'; // Oculta la línea (ojo abierto)
             } else {
-                eyeSvg.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
-            }
-        });
-
-        const forgotTrigger = document.getElementById('forgotTrigger');
-        const recoverySection = document.getElementById('recoverySection');
-        const closeRecovery = document.getElementById('closeRecovery');
-
-        forgotTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            recoverySection.style.display = 'block';
-        });
-
-        closeRecovery.addEventListener('click', () => {
-            recoverySection.style.display = 'none';
-        });
-
-        function enviarCodigo() {
-            const email = document.getElementById('recoveryEmail').value;
-            if(email) {
-                alert("Verification code successfully sent to: " + email + "!");
-                recoverySection.style.display = 'none';
-            } else {
-                alert("Please enter a valid email.");
+                passInput.type = 'password';
+                if (slashLine) slashLine.style.display = 'block'; // Muestra la línea (ojo tachado)
             }
         }
 
-        function simularCaptcha() {
-            const spinner = document.getElementById('captchaSpinner');
-            const checkbox = document.getElementById('robotCheck');
-            const box = document.getElementById('recaptchaBox');
+        function showRecoveryModal(e) {
+            e.preventDefault();
+            const currentLang = localStorage.getItem('fiao_lang') || 'en';
+            alert(currentLang === 'es' ? 'Se ha enviado un enlace de recuperación a tu correo.' : 'A recovery link has been sent to your email.');
+        }
 
-            if(!checkbox.checked && spinner.style.display !== 'block') {
-                spinner.style.display = 'block';
-                box.style.pointerEvents = 'none';
+        function executeLogin(e) {
+            e.preventDefault();
+            const idNumber = document.getElementById('loginIdNumber').value.trim();
+            const email = document.getElementById('loginEmail').value.trim();
 
-                setTimeout(() => {
-                    spinner.style.display = 'none';
-                    checkbox.checked = true;
-                    box.style.borderColor = '#46b8da';
-                    box.style.backgroundColor = '#e8f4f8';
-                }, 1200);
-            }
+            const userSession = {
+                idNumber: idNumber,
+                name: "Juan Pérez",
+                email: email,
+                role: "owner"
+            };
+
+            localStorage.setItem('fiao_user', JSON.stringify(userSession));
+            window.location.href = "index.html";
         }
     </script>
 </body>
