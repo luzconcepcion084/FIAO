@@ -9,7 +9,7 @@
 </head>
 <body class="login-body">
 
-    <!-- BARRA DE NAVEGACIÓN IDÉNTICA A LA DEL INDEX -->
+    <!-- BARRA DE NAVEGACIÓN GLOBAL -->
     <header class="navbar main-top-nav">
         <div class="logo">FIA<span class="yellow-text">'O</span></div>
         <nav class="nav-links">
@@ -37,7 +37,6 @@
             <h1 data-en="We are innovation with purpose" data-es="Somos innovación con propósito">We are innovation with purpose</h1>
             <p class="subtitle" data-en="Technology at the service of small businesses in Panama" data-es="Tecnología al servicio de pequeños negocios en Panamá">Technology at the service of small businesses in Panama</p>
 
-            <!-- Botón de Regresar al Inicio -->
             <div style="margin-bottom: 25px;">
                 <a href="index.html" class="btn-back-home" data-en="&larr; Back to Home" data-es="&larr; Volver al Inicio">&larr; Back to Home</a>
             </div>
@@ -60,7 +59,7 @@
             </div>
         </div>
 
-        <!-- Lado Derecho: Tarjeta de Log In -->
+        <!-- Lado Derecho: Tarjeta de Iniciar Sesión -->
         <div class="login-right-area">
             <div class="login-card">
                 <h2 data-en="Log In" data-es="Iniciar Sesión">Log In</h2>
@@ -74,13 +73,13 @@
                         <input type="text" id="loginIdNumber" placeholder="8-123-4567" required>
                     </div>
 
-                    <!-- Campo 2: Correo -->
+                    <!-- Campo 2: Correo con soporte universal de teclado -->
                     <div class="input-group">
                         <label data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
                         <input type="email" id="loginEmail" placeholder="example@domain.com" required>
                     </div>
 
-                    <!-- Campo 3: Contraseña con el ojito interactivo SVG -->
+                    <!-- Campo 3: Contraseña con ojito SVG -->
                     <div class="input-group">
                         <label data-en="Password" data-es="Contraseña">Password</label>
                         <div class="password-box-container">
@@ -111,17 +110,18 @@
 
     <script src="asset/js/main.js"></script>
     <script>
-        // Función específica para alternar el ojito en el login
         function toggleLoginPassView() {
             const passInput = document.getElementById('loginPassword');
             const slashLine = document.getElementById('loginEyeSlashLine');
 
-            if (passInput.type === 'password') {
-                passInput.type = 'text';
-                if (slashLine) slashLine.style.display = 'none'; // Oculta la línea (ojo abierto)
-            } else {
-                passInput.type = 'password';
-                if (slashLine) slashLine.style.display = 'block'; // Muestra la línea (ojo tachado)
+            if (passInput) {
+                if (passInput.type === 'password') {
+                    passInput.type = 'text';
+                    if (slashLine) slashLine.style.display = 'none';
+                } else {
+                    passInput.type = 'password';
+                    if (slashLine) slashLine.style.display = 'block';
+                }
             }
         }
 
@@ -138,13 +138,34 @@
 
             const userSession = {
                 idNumber: idNumber,
-                name: "Juan Pérez",
+                name: email.includes('@') ? email.split('@')[0] : email,
                 email: email,
                 role: "owner"
             };
 
             localStorage.setItem('fiao_user', JSON.stringify(userSession));
-            window.location.href = "index.html";
+            window.location.href = "dashboard.html";
+        }
+
+        // --- SOLUCIÓN DE TECLADO PARA EL ARROBA (@) ---
+        // Esto intercepta teclas comunes de atajos internacionales (como AltGr, Ctrl+Alt, o combinaciones numéricas)
+        document.getElementById('loginEmail').addEventListener('keydown', function(e) {
+            // Si presionas la combinación de código 64 (que corresponde al arroba universal en muchos sistemas)
+            // O si detectamos que intentas usar combinaciones comunes según el idioma:
+            
+            // Atajo alternativo amigable: Si mantienes presionada la tecla Ctrl + Alt + Q (común en Windows en español) o AltGr + Q
+            if ((e.ctrlKey && e.altKey && (e.key === 'q' || e.key === 'Q')) || e.key === 'Dead') {
+                e.preventDefault();
+                insertTextAtCursor(this, '@');
+            }
+        });
+
+        // Función auxiliar para insertar el texto exactamente donde está el cursor de escritura
+        function insertTextAtCursor(field, text) {
+            const start = field.selectionStart;
+            const end = field.selectionEnd;
+            field.value = field.value.substring(0, start) + text + field.value.substring(end);
+            field.selectionStart = field.selectionEnd = start + text.length;
         }
     </script>
 </body>

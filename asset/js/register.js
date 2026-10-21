@@ -6,8 +6,11 @@ let selectedRegisterRole = 'owner';
 
 function setRegisterRole(role) {
     selectedRegisterRole = role;
-    document.getElementById('roleOwnerBtn').classList.toggle('active', role === 'owner');
-    document.getElementById('roleClientBtn').classList.toggle('active', role === 'client');
+    const ownerBtn = document.getElementById('roleOwnerBtn');
+    const clientBtn = document.getElementById('roleClientBtn');
+
+    if (ownerBtn) ownerBtn.classList.toggle('active', role === 'owner');
+    if (clientBtn) clientBtn.classList.toggle('active', role === 'client');
 
     const storeGroup = document.getElementById('storeGroup');
     if (storeGroup) {
@@ -19,12 +22,14 @@ function toggleRegPassView() {
     const passInput = document.getElementById('regPassword');
     const slashLine = document.getElementById('eyeSlashLine');
 
-    if (passInput.type === 'password') {
-        passInput.type = 'text';
-        if (slashLine) slashLine.style.display = 'none'; // Oculta la línea diagonal (ojo abierto)
-    } else {
-        passInput.type = 'password';
-        if (slashLine) slashLine.style.display = 'block'; // Muestra la línea diagonal (ojo tachado)
+    if (passInput) {
+        if (passInput.type === 'password') {
+            passInput.type = 'text';
+            if (slashLine) slashLine.style.display = 'none';
+        } else {
+            passInput.type = 'password';
+            if (slashLine) slashLine.style.display = 'block';
+        }
     }
 }
 
@@ -45,8 +50,6 @@ function executeRegister(e) {
 
     localStorage.setItem('fiao_user', JSON.stringify(userSession));
 
-    const currentLang = localStorage.getItem('fiao_lang') || 'en';
-    alert(currentLang === 'es' ? '¡Registro exitoso! Bienvenido a FIA\'O.' : 'Registration successful! Welcome to FIA\'O.');
-
-    window.location.href = "index.html";
+    // REDIRECCIÓN DIRECTA AL DASHBOARD
+    window.location.href = "dashboard.html";
 }

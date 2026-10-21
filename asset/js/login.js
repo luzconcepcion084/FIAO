@@ -2,9 +2,19 @@
 /* LÓGICA DE INICIO DE SESIÓN - FIA'O        */
 /* ========================================= */
 
-function togglePassView() {
+function toggleLoginPassView() {
     const passInput = document.getElementById('loginPassword');
-    passInput.type = passInput.type === 'password' ? 'text' : 'password';
+    const slashLine = document.getElementById('loginEyeSlashLine');
+
+    if (passInput) {
+        if (passInput.type === 'password') {
+            passInput.type = 'text';
+            if (slashLine) slashLine.style.display = 'none';
+        } else {
+            passInput.type = 'password';
+            if (slashLine) slashLine.style.display = 'block';
+        }
+    }
 }
 
 function showRecoveryModal(e) {
@@ -18,16 +28,16 @@ function executeLogin(e) {
     const idNumber = document.getElementById('loginIdNumber').value.trim();
     const email = document.getElementById('loginEmail').value.trim();
 
-    // Guardar sesión en el navegador con los datos ingresados
+    // Guardar la sesión en la memoria local
     const userSession = {
         idNumber: idNumber,
-        name: "Juan Pérez", // Nombre simulado basado en el login
+        name: email.split('@')[0], // Nombre temporal extraído del correo si no hay registro
         email: email,
-        role: "owner"
+        role: "owner" // Por defecto entra como tendero en login directo
     };
 
     localStorage.setItem('fiao_user', JSON.stringify(userSession));
 
-    // Redirigir al index para que la barra muestre automáticamente el círculo de perfil
-    window.location.href = "index.html";
+    // REDIRECCIÓN DIRECTA AL DASHBOARD
+    window.location.href = "dashboard.html";
 }

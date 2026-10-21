@@ -9,7 +9,7 @@
 </head>
 <body class="login-body">
 
-    <!-- BARRA DE NAVEGACIÓN IDÉNTICA A LA DEL INDEX -->
+    <!-- BARRA DE NAVEGACIÓN GLOBAL -->
     <header class="navbar main-top-nav">
         <div class="logo">FIA<span class="yellow-text">'O</span></div>
         <nav class="nav-links">
@@ -37,7 +37,6 @@
             <h1 data-en="Join the digital revolution for your business" data-es="Únete a la revolución digital de tu negocio">Join the digital revolution for your business</h1>
             <p class="subtitle" data-en="Secure credit management and ID verification for Panama" data-es="Gestión de crédito segura y verificación de identidad para Panamá">Secure credit management and ID verification for Panama</p>
 
-            <!-- Botón de Regresar al Inicio -->
             <div style="margin-bottom: 25px;">
                 <a href="index.html" class="btn-back-home" data-en="&larr; Back to Home" data-es="&larr; Volver al Inicio">&larr; Back to Home</a>
             </div>
@@ -68,7 +67,7 @@
 
                 <form id="registerForm" onsubmit="executeRegister(event)">
                     
-                    <!-- Botones de rol con frase completa y estilo píldora -->
+                    <!-- Botones de Selección de Rol -->
                     <div class="role-selector">
                         <button type="button" class="role-pill-btn active" id="roleOwnerBtn" onclick="setRegisterRole('owner')" 
                                 data-en="Register as store owner" data-es="Registrarse como dueño">Register as store owner</button>
@@ -97,10 +96,10 @@
                     <!-- Correo Electrónico -->
                     <div class="input-group">
                         <label data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
-                        <input type="email" id="regEmail" placeholder="example@domain.com" required>
+                        <input type="email" id="regEmail" placeholder="example@domain.com" required autocomplete="off">
                     </div>
 
-                    <!-- Contraseña con ícono de ojo interactivo -->
+                    <!-- Contraseña con ojito SVG -->
                     <div class="input-group">
                         <label data-en="Password" data-es="Contraseña">Password</label>
                         <div class="password-box-container">
@@ -117,7 +116,7 @@
                     <!-- Botón de Registro -->
                     <button type="submit" class="btn-red-submit" data-en="Register" data-es="Registrarse">Register</button>
 
-                    <!-- Enlace para volver al login -->
+                    <!-- Enlace para volver a Iniciar Sesión -->
                     <p class="signup-redirect">
                         <span data-en="Already have an account?" data-es="¿Ya tienes una cuenta?">Already have an account?</span> 
                         <a href="login.html" data-en="Log In" data-es="Iniciar Sesión">Log In</a>
@@ -130,5 +129,22 @@
 
     <script src="asset/js/main.js"></script>
     <script src="asset/js/register.js"></script>
+    <script>
+        // --- SOPORTE UNIVERSAL PARA EL ARROBA (@) EN REGISTRO ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const regEmailInput = document.getElementById('regEmail');
+            if (regEmailInput) {
+                regEmailInput.addEventListener('keydown', function(e) {
+                    if ((e.ctrlKey && e.altKey && (e.key === 'q' || e.key === 'Q')) || e.key === 'Dead') {
+                        e.preventDefault();
+                        const start = this.selectionStart;
+                        const end = this.selectionEnd;
+                        this.value = this.value.substring(0, start) + '@' + this.value.substring(end);
+                        this.selectionStart = this.selectionEnd = start + 1;
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
