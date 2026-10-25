@@ -4,64 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIA'O - Digital Notebook</title>
-    <link rel="stylesheet" href="asset/css/global.css">
+    <link rel="stylesheet" href="asset/css/index.css">
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN FLOTANTE -->
+    <!-- BARRA DE NAVEGACIÓN FLOTANTE REDONDEADA -->
     <header class="navbar main-top-nav">
-        <div class="logo">FIA<span class="yellow-text">'O</span></div>
+        <a href="index.html" class="logo">FIA<span class="yellow-text">'O</span></a>
         <nav class="nav-links">
             <a href="index.html" class="active" data-en="Home" data-es="Inicio">Home</a>
-            <a href="about.html" data-en="About Us" data-es="Nosotros">About Us</a>
-            <a href="#credit" data-en="Credit" data-es="Créditos">Credit</a>
-            <a href="#products" data-en="Products" data-es="Productos">Products</a>
-            <a href="#clients" data-en="Clients" data-es="Clientes">Clients</a>
-            <a href="#reports" data-en="Reports" data-es="Reportes">Reports</a>
+            <!-- Enlace ancla para deslizarse suavemente hasta la sección del About Us -->
+            <a href="#about-section" data-en="About Us" data-es="Nosotros">About Us</a>
+            <a href="#about-section" data-en="Credit" data-es="Créditos">Credit</a>
+            <a href="#about-section" data-en="Products" data-es="Productos">Products</a>
+            <a href="#about-section" data-en="Clients" data-es="Clientes">Clients</a>
+            <a href="#about-section" data-en="Reports" data-es="Reportes">Reports</a>
         </nav>
 
-        <!-- HERRAMIENTAS DE NAVEGACIÓN (Solo Idioma y Tema) -->
         <div class="nav-actions">
-            <!-- Botón Traductor -->
-            <button id="langToggle" class="nav-btn-icon">🌐 <span id="langLabel">ES</span></button>
-            <!-- Botón Modo Oscuro/Claro -->
-            <button id="themeToggle" class="nav-btn-icon">🌙</button>
-            <!-- Contenedor reservado para el perfil post-login -->
+            <button id="langToggle" class="nav-btn-icon"><span id="langLabel">ES</span></button>
+            <button id="themeToggle" class="nav-btn-icon">Theme</button>
             <div id="userNavArea"></div>
         </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL (HERO) -->
-    <main style="display: flex; justify-content: space-between; align-items: center; padding: 40px 80px; max-width: 1250px; margin: 0 auto; gap: 40px;">
-        <div style="flex: 1; max-width: 580px;">
-            <h1 style="font-size: 60px; font-weight: 700; line-height: 1.05; margin-bottom: 20px;">
-                Your <span class="yellow-text" data-en="credit notebook," data-es="libreta de crédito,">credit notebook,</span><br>
-                <span data-en="now digital." data-es="ahora digital.">now digital.</span>
+    <!-- HERO SECTION CON CARRUSEL -->
+    <main class="hero-carousel-container">
+        <div class="hero-content">
+            <h1 class="hero-title" data-en='Your <span class="highlight-credit">credit</span> notebook, now digital.' data-es='Tu libreta de <span class="highlight-credit">crédito</span>, ahora digital.'>
+                Your <span class="highlight-credit">credit</span> notebook, now digital.
             </h1>
-            <p style="font-size: 16px; line-height: 1.5; opacity: 0.9; margin-bottom: 35px;"
-               data-en="FIA'O digitizes customer, debt, and payment management for convenience stores and small businesses in Panama, replacing the traditional paper ledger with a modern digital management system." 
-               data-es="FIA'O digitaliza la gestión de clientes, deudas y pagos para minisupermercados y pequeños negocios en Panamá, reemplazando la libreta de papel tradicional con un sistema de gestión digital moderno.">
-                FIA'O digitizes customer, debt, and payment management for convenience stores and small businesses in Panama, replacing the traditional paper ledger with a modern digital management system.
+            
+            <p class="hero-subtitle" id="carouselSubtitle" 
+               data-en="Digitize customer, debt, and payment management for convenience stores in Panama." 
+               data-es="Digitaliza la gestión de clientes, deudas y pagos para minisupermercados en Panamá.">
+                Digitize customer, debt, and payment management for convenience stores in Panama.
             </p>
             
-            <!-- DOS BOTONES AMARILLOS ABAJO -->
-            <div style="display: flex; gap: 20px;">
-                <a href="login.html" style="text-decoration: none;">
-                    <button style="background-color: var(--color-amarillo); color: var(--color-cafe); border: none; padding: 12px 42px; border-radius: 30px; font-size: 15px; font-weight: 700; cursor: pointer;"
-                            data-en="Login" data-es="Iniciar Sesión">Login</button>
-                </a>
-                <a href="login.html" style="text-decoration: none;">
-                    <button style="background-color: var(--color-amarillo); color: var(--color-cafe); border: none; padding: 12px 42px; border-radius: 30px; font-size: 15px; font-weight: 700; cursor: pointer;"
-                            data-en="Sign up" data-es="Registrarse">Sign up</button>
-                </a>
+            <div class="hero-buttons">
+                <a href="login.html" class="btn-primary-yellow" data-en="Login" data-es="Iniciar Sesión">Login</a>
+                <a href="register.html" class="btn-primary-yellow" data-en="Sign up" data-es="Registrarse">Sign up</a>
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
             </div>
         </div>
-        <div style="flex: 1; display: flex; justify-content: center;">
-            <img src="asset/img/movil.png" alt="FIA'O App" style="max-width: 360px; filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));">
+
+        <div class="hero-image-side">
+            <img id="carouselImage" src="asset/img/movil.png" alt="FIA'O App Preview" class="carousel-img" 
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/340x600?text=FIA%27O+App+Preview';">
         </div>
     </main>
 
-    <!-- SCRIPT GLOBAL -->
-    <script src="asset/js/main.js"></script>
+    <!-- SECCIÓN DONDE SE INCRUSTA EL ARCHIVO ABOUT.HTML ABAJO DEL INDEX -->
+    <section id="about-section" class="iframe-section">
+        <iframe src="about.html" class="about-iframe" scrolling="no" id="aboutFrame"></iframe>
+    </section>
+
+    <script src="asset/js/index.js"></script>
 </body>
 </html>

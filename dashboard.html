@@ -164,8 +164,8 @@
         </nav>
 
         <div class="nav-actions">
-            <button id="langToggle" class="nav-btn-icon">🌐 <span id="langLabel">ES</span></button>
-            <button id="themeToggle" class="nav-btn-icon">🌙</button>
+            <button id="langToggle" class="nav-btn-icon"><span id="langLabel">ES</span></button>
+            <button id="themeToggle" class="nav-btn-icon">Theme</button>
             
             <!-- ÁREA DINÁMICA DE USUARIO (PERFIL / AVATAR) -->
             <div id="userNavArea"></div>
@@ -180,30 +180,32 @@
         <!-- ======================================================= -->
         <div id="ownerDashboardView" style="display: none;">
             <div style="margin-bottom: 25px;">
-                <h1 id="ownerWelcomeTitle" style="font-size: 26px; font-weight: bold; color: #18181b;">¡Hola, Tendero! 👋</h1>
-                <p class="subtitle" data-en="Financial control and debt management for your business." data-es="Control financiero y gestión de cobros para tu negocio.">Control financiero y gestión de cobros para tu negocio.</p>
+                <h1 id="ownerWelcomeTitle" style="font-size: 26px; font-weight: bold; color: #18181b;">
+                    <span class="greeting-text" data-en="Hello" data-es="Hola">Hello</span>, <span class="user-display-name">Store Owner</span>!
+                </h1>
+                <p class="subtitle" data-en="Financial control and debt management for your business." data-es="Control financiero y gestión de cobros para tu negocio.">Financial control and debt management for your business.</p>
             </div>
 
             <!-- Resumen de Métricas Clave (KPIs) -->
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <h3 data-en="Total Credit Receivable" data-es="Total Fiado por Cobrar">Total Fiado por Cobrar</h3>
+                    <h3 data-en="Total Credit Receivable" data-es="Total Fiado por Cobrar">Total Credit Receivable</h3>
                     <div class="kpi-value" id="totalFiado">$485.50</div>
                 </div>
                 <div class="kpi-card">
-                    <h3 data-en="Active Debtor Customers" data-es="Clientes Deudores Activos">Clientes Deudores Activos</h3>
+                    <h3 data-en="Active Debtor Customers" data-es="Clientes Deudores Activos">Active Debtor Customers</h3>
                     <div class="kpi-value" id="activeDebtors">12</div>
                 </div>
                 <div class="kpi-card">
-                    <h3 data-en="Today's Collections" data-es="Abonos del Día">Abonos del Día</h3>
+                    <h3 data-en="Today's Collections" data-es="Abonos del Día">Today's Collections</h3>
                     <div class="kpi-value" id="todayCollections">$75.00</div>
                 </div>
             </div>
 
             <!-- Barra de Herramientas: Buscador por Cédula / KYC -->
             <div class="dashboard-toolbar">
-                <input type="text" id="kycSearchInput" class="search-box" placeholder="Buscar por Nombre o Cédula..." data-en="Search by name or ID (Cédula)..." data-es="Buscar por Nombre o Cédula...">
-                <button class="btn-action btn-primary-action" onclick="alert('Función para agregar nuevo fiado próximamente')" data-en="+ New Credit Entry" data-es="+ Nuevo Fiado">+ Nuevo Fiado</button>
+                <input type="text" id="kycSearchInput" class="search-box" placeholder="Search by name or ID (Cédula)..." data-en="Search by name or ID (Cédula)..." data-es="Buscar por Nombre o Cédula...">
+                <button class="btn-action btn-primary-action" onclick="alert('Función para agregar nuevo fiado próximamente')" data-en="+ New Credit Entry" data-es="+ Nuevo Fiado">+ New Credit Entry</button>
             </div>
 
             <!-- Tabla de Control de Deudas -->
@@ -211,12 +213,12 @@
                 <table>
                     <thead>
                         <tr>
-                            <th data-en="Customer Name" data-es="Cliente">Cliente</th>
-                            <th data-en="ID Number" data-es="Cédula">Cédula</th>
-                            <th data-en="Total Amount Owed" data-es="Monto Deudor">Monto Deudor</th>
-                            <th data-en="Last Activity" data-es="Última Actividad">Última Actividad</th>
-                            <th data-en="Status" data-es="Estado">Estado</th>
-                            <th data-en="Actions" data-es="Acciones">Acciones</th>
+                            <th data-en="Customer Name" data-es="Cliente">Customer Name</th>
+                            <th data-en="ID Number" data-es="Cédula">ID Number</th>
+                            <th data-en="Total Amount Owed" data-es="Monto Deudor">Total Amount Owed</th>
+                            <th data-en="Last Activity" data-es="Última Actividad">Last Activity</th>
+                            <th data-en="Status" data-es="Estado">Status</th>
+                            <th data-en="Actions" data-es="Acciones">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="ownerDebtsTableBody">
@@ -225,9 +227,9 @@
                             <td>8-892-1402</td>
                             <td><strong>$45.00</strong></td>
                             <td>18 Oct 2026</td>
-                            <td><span class="badge pending" data-en="Pending" data-es="Pendiente">Pendiente</span></td>
+                            <td><span class="badge pending" data-en="Pending" data-es="Pendiente">Pending</span></td>
                             <td>
-                                <button class="btn-action btn-primary-action" onclick="openPaymentModal('Carlos Mendoza', 45)" data-en="Charge / Register" data-es="Cobrar / Registrar">Cobrar / Registrar</button>
+                                <button class="btn-action btn-primary-action" onclick="openPaymentModal('Carlos Mendoza', 45)" data-en="Charge / Register" data-es="Cobrar / Registrar">Charge / Register</button>
                             </td>
                         </tr>
                         <tr>
@@ -235,9 +237,9 @@
                             <td>3-721-990</td>
                             <td><strong>$120.50</strong></td>
                             <td>12 Oct 2026</td>
-                            <td><span class="badge overdue" data-en="Overdue" data-es="Vencido">Vencido</span></td>
+                            <td><span class="badge overdue" data-en="Overdue" data-es="Vencido">Overdue</span></td>
                             <td>
-                                <button class="btn-action btn-primary-action" onclick="openPaymentModal('Ana Samaniego', 120.50)" data-en="Charge / Register" data-es="Cobrar / Registrar">Cobrar / Registrar</button>
+                                <button class="btn-action btn-primary-action" onclick="openPaymentModal('Ana Samaniego', 120.50)" data-en="Charge / Register" data-es="Cobrar / Registrar">Charge / Register</button>
                             </td>
                         </tr>
                         <tr>
@@ -245,9 +247,9 @@
                             <td>8-712-441</td>
                             <td><strong>$320.00</strong></td>
                             <td>05 Oct 2026</td>
-                            <td><span class="badge pending" data-en="Pending" data-es="Pendiente">Pendiente</span></td>
+                            <td><span class="badge pending" data-en="Pending" data-es="Pendiente">Pending</span></td>
                             <td>
-                                <button class="btn-action btn-primary-action" onclick="openPaymentModal('Luis Castillo', 320)" data-en="Charge / Register" data-es="Cobrar / Registrar">Cobrar / Registrar</button>
+                                <button class="btn-action btn-primary-action" onclick="openPaymentModal('Luis Castillo', 320)" data-en="Charge / Register" data-es="Cobrar / Registrar">Charge / Register</button>
                             </td>
                         </tr>
                     </tbody>
@@ -260,24 +262,26 @@
         <!-- ======================================================= -->
         <div id="clientDashboardView" style="display: none;">
             <div style="margin-bottom: 25px;">
-                <h1 id="clientWelcomeTitle" style="font-size: 26px; font-weight: bold; color: #18181b;">¡Hola, Cliente! 👋</h1>
-                <p class="subtitle" data-en="Overview of your active accounts and transparent balances." data-es="Resumen de tus cuentas activas y saldos transparentes.">Resumen de tus cuentas activas y saldos transparentes.</p>
+                <h1 id="clientWelcomeTitle" style="font-size: 26px; font-weight: bold; color: #18181b;">
+                    <span class="greeting-text" data-en="Hello" data-es="Hola">Hello</span>, <span class="user-display-name">Customer</span>!
+                </h1>
+                <p class="subtitle" data-en="Overview of your active accounts and transparent balances." data-es="Resumen de tus cuentas activas y saldos transparentes.">Overview of your active accounts and transparent balances.</p>
             </div>
 
             <!-- Resumen Personal -->
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <h3 data-en="My Total Debt" data-es="Mi Deuda Total">Mi Deuda Total</h3>
+                    <h3 data-en="My Total Debt" data-es="Mi Deuda Total">My Total Debt</h3>
                     <div class="kpi-value" id="clientTotalDebt">$45.00</div>
                 </div>
                 <div class="kpi-card">
-                    <h3 data-en="Active Stores" data-es="Minisúperes Activos">Minisúperes Activos</h3>
+                    <h3 data-en="Active Stores" data-es="Minisúperes Activos">Active Stores</h3>
                     <div class="kpi-value" id="clientActiveStores">1</div>
                 </div>
             </div>
 
             <div style="margin-bottom: 15px;">
-                <h3 style="font-size: 18px; color: #18181b;" data-en="Statement by Store" data-es="Estado de Cuenta por Tienda">Estado de Cuenta por Tienda</h3>
+                <h3 style="font-size: 18px; color: #18181b;" data-en="Statement by Store" data-es="Estado de Cuenta por Tienda">Statement by Store</h3>
             </div>
 
             <!-- Estado de Cuenta Transparente -->
@@ -285,10 +289,10 @@
                 <table>
                     <thead>
                         <tr>
-                            <th data-en="Store / Business" data-es="Comercio / Minisúper">Comercio / Minisúper</th>
-                            <th data-en="Last Purchase Date" data-es="Última Compra">Última Compra</th>
-                            <th data-en="Amount Owed" data-es="Monto Adeudado">Monto Adeudado</th>
-                            <th data-en="Digital Payment" data-es="Pago Digital">Pago Digital</th>
+                            <th data-en="Store / Business" data-es="Comercio / Minisúper">Store / Business</th>
+                            <th data-en="Last Purchase Date" data-es="Última Compra">Last Purchase Date</th>
+                            <th data-en="Amount Owed" data-es="Monto Adeudado">Amount Owed</th>
+                            <th data-en="Digital Payment" data-es="Pago Digital">Digital Payment</th>
                         </tr>
                     </thead>
                     <tbody id="clientStoresTableBody">
@@ -297,7 +301,7 @@
                             <td>18 Oct 2026</td>
                             <td><strong style="color: #e63946;">$45.00</strong></td>
                             <td>
-                                <button class="btn-action btn-secondary-action" onclick="openDigitalPaymentModal('Minisúper Doña Rita', 45)" data-en="Pay with Yape / QR" data-es="Pagar con Yape / QR">Pagar con Yape / QR</button>
+                                <button class="btn-action btn-secondary-action" onclick="openDigitalPaymentModal('Minisúper Doña Rita', 45)" data-en="Pay with Yape / QR" data-es="Pagar con Yape / QR">Pay with Yape / QR</button>
                             </td>
                         </tr>
                     </tbody>
@@ -322,15 +326,52 @@
             // 2. Renderizar avatar y perfil en la barra de navegación superior
             renderUserProfileNav(user);
 
-            // 3. Activar la vista correspondiente según el rol del usuario (owner o client)
+            // 3. Activar la vista correspondiente e inyectar el nombre del usuario
             if (user.role === 'owner') {
                 document.getElementById('ownerDashboardView').style.display = 'block';
-                document.getElementById('ownerWelcomeTitle').innerText = `¡Hola, ${user.name || 'Tendero'}! 👋`;
+                const ownerNameSpan = document.querySelector('#ownerWelcomeTitle .user-display-name');
+                if (ownerNameSpan) ownerNameSpan.innerText = user.name || 'Tendero';
             } else {
                 document.getElementById('clientDashboardView').style.display = 'block';
-                document.getElementById('clientWelcomeTitle').innerText = `¡Hola, ${user.name || 'Cliente'}! 👋`;
+                const clientNameSpan = document.querySelector('#clientWelcomeTitle .user-display-name');
+                if (clientNameSpan) clientNameSpan.innerText = user.name || 'Cliente';
+            }
+
+            // 4. Configurar el botón de Tema sin emojis
+            setupCleanThemeToggle();
+
+            // 5. Aplicar traducción inicial si la función existe en main.js
+            if (typeof updatePageLanguage === 'function') {
+                updatePageLanguage();
             }
         });
+
+        // Configuración para limpiar emojis del botón de tema y sincronizar idioma
+        function setupCleanThemeToggle() {
+            const themeBtn = document.getElementById('themeToggle');
+            if (!themeBtn) return;
+
+            const updateThemeButtonText = () => {
+                const currentLang = localStorage.getItem('fiao_lang') || 'en';
+                themeBtn.textContent = currentLang === 'es' ? 'Tema' : 'Theme';
+            };
+
+            updateThemeButtonText();
+
+            themeBtn.onclick = function(e) {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('fiao_theme', isDark ? 'dark' : 'light');
+                updateThemeButtonText();
+            };
+
+            const langBtn = document.getElementById('langToggle');
+            if (langBtn) {
+                langBtn.addEventListener('click', function() {
+                    setTimeout(updateThemeButtonText, 50);
+                });
+            }
+        }
 
         // Función para renderizar el menú circular con iniciales
         function renderUserProfileNav(user) {
@@ -350,8 +391,8 @@
                             <strong>${user.name || 'Usuario FIA\'O'}</strong>
                             <span>Rol: ${roleName}</span>
                         </div>
-                        <a href="profile.html" data-en="My Profile" data-es="Mi Perfil">👤 Mi Perfil</a>
-                        <button onclick="logoutUser()" class="logout-btn" data-en="Log Out" data-es="Cerrar Sesión">🚪 Cerrar Sesión</button>
+                        <a href="profile.html" data-en="My Profile" data-es="Mi Perfil">My Profile</a>
+                        <button onclick="logoutUser()" class="logout-btn" data-en="Log Out" data-es="Cerrar Sesión">Log Out</button>
                     </div>
                 </div>
             `;
