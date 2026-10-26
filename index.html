@@ -6,19 +6,19 @@
     <title>FIA'O - Digital Notebook</title>
     <link rel="stylesheet" href="asset/css/index.css">
 </head>
-<body>
+<body id="top">
 
     <!-- BARRA DE NAVEGACIÓN FLOTANTE REDONDEADA -->
     <header class="navbar main-top-nav">
         <a href="index.html" class="logo">FIA<span class="yellow-text">'O</span></a>
         <nav class="nav-links">
             <a href="index.html" class="active" data-en="Home" data-es="Inicio">Home</a>
-            <!-- Enlace ancla para deslizarse suavemente hasta la sección del About Us -->
             <a href="#about-section" data-en="About Us" data-es="Nosotros">About Us</a>
-            <a href="#about-section" data-en="Credit" data-es="Créditos">Credit</a>
+            <a href="owner-credits.html" data-en="Credit" data-es="Créditos">Credit</a>
             <a href="#about-section" data-en="Products" data-es="Productos">Products</a>
             <a href="#about-section" data-en="Clients" data-es="Clientes">Clients</a>
-            <a href="#about-section" data-en="Reports" data-es="Reportes">Reports</a>
+            <a href="#about-section" data-en="Reports" data-es="Reportes">Reportes</a>
+            <a href="owner-credits.html" data-en="Contacto" data-es="Contacto">Contacto</a>
         </nav>
 
         <div class="nav-actions">
@@ -28,7 +28,7 @@
         </div>
     </header>
 
-    <!-- HERO SECTION CON CARRUSEL -->
+    <!-- HERO SECTION CON CARRUSEL (Altura alargada y perfectamente proporcionada) -->
     <main class="hero-carousel-container">
         <div class="hero-content">
             <h1 class="hero-title" data-en='Your <span class="highlight-credit">credit</span> notebook, now digital.' data-es='Tu libreta de <span class="highlight-credit">crédito</span>, ahora digital.'>
@@ -54,12 +54,12 @@
         </div>
 
         <div class="hero-image-side">
-            <img id="carouselImage" src="asset/img/movil.png" alt="FIA'O App Preview" class="carousel-img" 
+            <img id="carouselImage" src="asset/img/slide1.png" alt="FIA'O App Preview" class="carousel-img" 
                  onerror="this.onerror=null; this.src='https://via.placeholder.com/340x600?text=FIA%27O+App+Preview';">
         </div>
     </main>
 
-    <!-- SECCIÓN DONDE SE INCRUSTA EL ARCHIVO ABOUT.HTML ABAJO DEL INDEX -->
+    <!-- SECCIÓN DONDE SE INCRUSTA EL ABOUT.HTML ABAJO DEL INDEX -->
     <section id="about-section" class="iframe-section">
         <iframe src="about.html" class="about-iframe" scrolling="no" id="aboutFrame"></iframe>
     </section>

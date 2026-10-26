@@ -1,0 +1,332 @@
+:root {
+    --primary-red: #A61E22;
+    --golden-yellow: #F4B942;
+    --cream-bg: #FFF7E8;
+    --text-dark: #2B2B2B;
+    --white: #FFFFFF;
+    --gray-border: #E5E7EB;
+    --input-bg: #FFFFFF;
+}
+
+body.dark-theme {
+    --cream-bg: #121212;
+    --text-dark: #F3F4F6;
+    --white: #1E1E1E;
+    --gray-border: #333333;
+    --input-bg: #2A2A2A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--cream-bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bg-shape-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(244,185,66,0.25) 0%, rgba(255,247,232,0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bg-shape-bottom {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(166,30,34,0.08) 0%, rgba(255,247,232,0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Navbar fijo en su rojo original */
+.navbar-container {
+    width: 100%;
+    padding: 16px 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.navbar-content {
+    background-color: #A61E22 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 24px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.nav-logo {
+    color: #FFFFFF !important;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.nav-logo span {
+    color: var(--golden-yellow) !important;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #FFFFFF !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-right-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-pill-btn {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF !important;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.action-pill-btn:hover {
+    background-color: #FFFFFF;
+    color: #A61E22 !important;
+}
+
+.back-btn-wrapper {
+    padding: 4px 35px;
+    position: relative;
+    z-index: 10;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary-red);
+    color: #FFFFFF;
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(166, 30, 34, 0.25);
+    transition: transform 0.2s;
+}
+
+.back-home-btn:hover {
+    background-color: #8E181C;
+    transform: translateY(-1px);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px 50px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.brand-logo-box {
+    background-color: var(--white);
+    padding: 8px 22px;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-image-placeholder {
+    height: 32px;
+    object-fit: contain;
+}
+
+.register-card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 460px;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.3s ease;
+}
+
+.register-card h1 {
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body.dark-theme .subtitle {
+    color: #AAA;
+}
+
+.account-type-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.account-option {
+    flex: 1;
+    border: 1.5px solid var(--gray-border);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: var(--input-bg);
+}
+
+.account-option.active {
+    border-color: var(--primary-red);
+    background-color: rgba(166, 30, 34, 0.08);
+}
+
+.option-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.option-desc {
+    display: block;
+    font-size: 11px;
+    color: #777;
+}
+
+body.dark-theme .option-desc {
+    color: #AAA;
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--gray-border);
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s, background-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-red);
+}
+
+.password-box {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.toggle-password:hover {
+    color: var(--primary-red);
+}
+
+.sign-in-submit-btn {
+    width: 100%;
+    background-color: var(--primary-red);
+    color: #FFFFFF;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.sign-in-submit-btn:hover {
+    background-color: #8E181C;
+}
+
+.signup-footer-text {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-top: 20px;
+}
+
+body.dark-theme .signup-footer-text {
+    color: #AAA;
+}
+
+.signup-footer-text a {
+    color: var(--primary-red);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.signup-footer-text a:hover {
+    text-decoration: underline;
+}

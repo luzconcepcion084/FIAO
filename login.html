@@ -3,157 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIA'O - Iniciar sesión</title>
-    <link rel="stylesheet" href="asset/css/global.css">
+    <title>FIA'O - Login</title>
     <link rel="stylesheet" href="asset/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR GLOBAL -->
-    <header class="navbar main-top-nav">
-        <a href="index.html" class="logo">FIA<span class="yellow-text">'O</span></a>
-        <nav class="nav-links">
-            <a href="index.html" data-en="Home" data-es="Inicio">Home</a>
-            <a href="about.html" data-en="About Us" data-es="Nosotros">About Us</a>
-            <a href="index.html#credit" data-en="Credit" data-es="Créditos">Credit</a>
-            <a href="index.html#products" data-en="Products" data-es="Productos">Products</a>
-            <a href="index.html#clients" data-en="Clients" data-es="Clientes">Clients</a>
-            <a href="index.html#reports" data-en="Reports" data-es="Reportes">Reports</a>
-        </nav>
+    <!-- Fondo decorativo superior izquierdo -->
+    <div class="bg-shape-top"></div>
 
-        <div class="nav-actions">
-            <button id="langToggle" class="nav-btn-icon"><span id="langLabel">ES</span></button>
-            <button id="themeToggle" class="nav-btn-icon">Theme</button>
-            <div id="userNavArea"></div>
+    <!-- Navbar idéntico a tu captura -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <div class="nav-logo">FIA<span>'</span>O</div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active" data-en="Home" data-es="Inicio">Home</a>
+                <a href="about.html" class="nav-link" data-en="About Us" data-es="Sobre Nosotros">About Us</a>
+                <a href="credit.html" class="nav-link" data-en="Credit" data-es="Crédito">Credit</a>
+                <a href="products.html" class="nav-link" data-en="Products" data-es="Productos">Products</a>
+                <a href="clients.html" class="nav-link" data-en="Clients" data-es="Clientes">Clients</a>
+                <a href="reports.html" class="nav-link" data-en="Reports" data-es="Reportes">Reports</a>
+                <a href="contact.html" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+            </nav>
+            <div class="nav-right-actions">
+                <button id="lang-btn" class="action-pill-btn">ES</button>
+                <button id="theme-btn" class="action-pill-btn">Theme</button>
+            </div>
         </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL EN DOS COLUMNAS -->
-    <main class="login-split-container">
-        
-        <!-- LADO IZQUIERDO -->
-        <div class="login-info-side">
-            <div>
-                <a href="index.html" class="btn-back-home" data-en="&larr; Volver al inicio" data-es="&larr; Volver al inicio">&larr; Volver al inicio</a>
-            </div>
+    <!-- Botón Back to Home -->
+    <div class="back-btn-wrapper">
+        <a href="index.html" class="back-home-btn" data-en="Back to Home" data-es="Volver al Inicio">
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
 
-            <h1 data-en="Somos más que una libreta digital" data-es="Somos más que una libreta digital">Somos más que una libreta digital</h1>
-            <p class="hero-desc" data-en="Tecnología al servicio de los pequeños negocios." data-es="Tecnología al servicio de los pequeños negocios.">Tecnología al servicio de los pequeños negocios.</p>
+    <!-- Fondo decorativo inferior derecho -->
+    <div class="bg-shape-bottom"></div>
 
-            <div class="feature-cards-stack">
-                <!-- Tarjeta 1 -->
-                <div class="feature-box">
-                    <div class="feature-icon-badge">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                    </div>
-                    <div class="feature-text">
-                        <h3 data-en="Control total" data-es="Control total">Control total</h3>
-                        <p data-en="Gestiona tu inventario, ventas y abonos de forma segura, fácil y organizada." data-es="Gestiona tu inventario, ventas y abonos de forma segura, fácil y organizada.">Gestiona tu inventario, ventas y abonos de forma segura, fácil y organizada.</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta 2 -->
-                <div class="feature-box">
-                    <div class="feature-icon-badge">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    </div>
-                    <div class="feature-text">
-                        <h3 data-en="Más seguridad" data-es="Más seguridad">Más seguridad</h3>
-                        <p data-en="Protegemos tu información y la de tus clientes con la mejor tecnología." data-es="Protegemos tu información y la de tus clientes con la mejor tecnología.">Protegemos tu información y la de tus clientes con la mejor tecnología.</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta 3 -->
-                <div class="feature-box">
-                    <div class="feature-icon-badge">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <div class="feature-text">
-                        <h3 data-en="Mejores relaciones" data-es="Mejores relaciones">Mejores relaciones</h3>
-                        <p data-en="Fortalece la confianza con tus clientes y haz crecer tu negocio." data-es="Fortalece la confianza con tus clientes y haz crecer tu negocio.">Fortalece la confianza con tus clientes y haz crecer tu negocio.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Contenedor Principal -->
+    <main class="main-content">
+        <!-- Espacio reservado para la imagen de FIA'O superior -->
+        <div class="brand-logo-box">
+            <img src="asset/img/fiao-logo.png" alt="FIA'O" class="brand-image-placeholder">
         </div>
 
-        <!-- LADO DERECHO: TARJETA DE LOGIN -->
-        <div class="login-form-side">
-            <div class="login-card">
-                <!-- Logo -->
-                <img src="asset/img/logo.png" alt="FIA'O - LIBRETA DIGITAL" class="brand-logo-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x65?text=FIA%27O';">
+        <div class="login-card">
+            <h1 data-en="Welcome Back!" data-es="¡Bienvenido de nuevo!">Welcome Back!</h1>
+            <p class="subtitle" data-en="Sign in to continue with FIA'O" data-es="Inicia sesión para continuar con FIA'O">Sign in to continue with FIA'O</p>
 
-                <h2 data-en="Iniciar sesión" data-es="Iniciar sesión">Iniciar sesión</h2>
-                <p class="subtitle" data-en="Bienvenido de nuevo. Ingresa a tu cuenta para continuar." data-es="Bienvenido de nuevo. Ingresa a tu cuenta para continuar.">
-                    Bienvenido de nuevo. Ingresa a tu cuenta para continuar.
-                </p>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="email" data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
+                    <input type="email" id="email" placeholder="name@example.com" required>
+                </div>
 
-                <!-- Botón Google -->
-                <button type="button" class="btn-google" onclick="alert('Google Sign-In')">
-                    <svg width="18" height="18" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                    </svg>
-                    <span data-en="Continuar con Google" data-es="Continuar con Google">Continuar con Google</span>
+                <div class="input-group">
+                    <label for="password" data-en="Password" data-es="Contraseña">Password</label>
+                    <div class="password-box">
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <i class="fa-regular fa-eye toggle-password" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <div class="forgot-wrapper">
+                    <a href="#" id="forgot-link" data-en="Forgot Password?" data-es="¿Olvidaste tu contraseña?">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="sign-in-submit-btn" data-en="Sign In" data-es="Iniciar Sesión">Sign In</button>
+
+                <div class="or-divider">
+                    <span>OR</span>
+                </div>
+
+                <button type="button" class="google-signin-btn">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"> <span data-en="Continue with Google" data-es="Continuar con Google">Continue with Google</span>
                 </button>
 
-                <!-- Separador -->
-                <div class="divider-container">
-                    <div class="divider-line"></div>
-                    <span class="divider-text" data-en="o" data-es="o">o</span>
-                    <div class="divider-line"></div>
-                </div>
-
-                <!-- Formulario -->
-                <form id="loginForm" onsubmit="executeLogin(event)">
-                    
-                    <div class="form-group">
-                        <label data-en="Correo electrónico" data-es="Correo electrónico">Correo electrónico</label>
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            </span>
-                            <input type="email" id="loginEmail" class="form-control" placeholder="tu@correo.com" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label data-en="Contraseña" data-es="Contraseña">Contraseña</label>
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                            </span>
-                            <input type="password" id="loginPassword" class="form-control" placeholder="Ingresa tu contraseña" required>
-                            <button type="button" class="password-toggle-btn" onclick="toggleLoginPassView()">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="forgot-password-container">
-                            <a href="#" onclick="showRecoveryModal(event)" class="forgot-link" data-en="¿Olvidaste tu contraseña?" data-es="¿Olvidaste tu contraseña?">¿Olvidaste tu contraseña?</a>
-                        </div>
-                    </div>
-
-                    <!-- Botón Iniciar Sesión -->
-                    <button type="submit" class="btn-submit-login">
-                        <span data-en="Iniciar sesión" data-es="Iniciar sesión">Iniciar sesión</span>
-                        <span style="font-size: 16px;">&rarr;</span>
-                    </button>
-
-                </form>
-
-                <p class="card-footer-text">
-                    <span data-en="¿No tienes una cuenta?" data-es="¿No tienes una cuenta?">¿No tienes una cuenta?</span> 
-                    <a href="register.html" data-en="Regístrate" data-es="Regístrate">Regístrate</a>
+                <p class="signup-footer-text">
+                    <span data-en="Don't have an account?" data-es="¿No tienes una cuenta?">Don't have an account?</span> 
+                    <a href="register.html" data-en="Sign Up" data-es="Regístrate">Sign Up</a>
                 </p>
-            </div>
+            </form>
         </div>
-
     </main>
 
-    <script src="asset/js/main.js"></script>
+    <!-- Modal Forgot Password -->
+    <div id="forgot-modal" class="modal-backdrop">
+        <div class="modal-card">
+            <button class="modal-close" id="close-modal-btn">&times;</button>
+            <h2 data-en="Reset Password" data-es="Restablecer Contraseña">Reset Password</h2>
+            <p data-en="Enter your email address and we'll send you a verification code." data-es="Ingresa tu correo electrónico y te enviaremos un código de verificación.">Enter your email address and we'll send you a verification code.</p>
+            
+            <form id="forgot-form">
+                <div class="input-group">
+                    <label for="reset-email" data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
+                    <input type="email" id="reset-email" placeholder="name@example.com" required>
+                </div>
+                <button type="submit" class="sign-in-submit-btn" data-en="Send Reset Code" data-es="Enviar Código">Send Reset Code</button>
+            </form>
+        </div>
+    </div>
+
     <script src="asset/js/login.js"></script>
 </body>
 </html>

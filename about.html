@@ -6,9 +6,8 @@
     <title>FIA'O - About Us</title>
     <link rel="stylesheet" href="asset/css/about.css">
 </head>
-<body>
+<body id="aboutTop">
 
-    <!-- BARRA DE NAVEGACIÓN PROPIA (Se oculta automáticamente si se ve incrustada en el Index) -->
     <header class="navbar main-top-nav">
         <a href="index.html" class="logo">FIA<span class="yellow-text">'O</span></a>
         <nav class="nav-links">
@@ -19,10 +18,9 @@
 
     <main class="about-main-container">
         
-        <!-- SECCIÓN 1: TÍTULO PRINCIPAL Y COMPOSICIÓN VISUAL -->
+        <!-- SECCIÓN 1: TÍTULO PRINCIPAL Y PRIMERA IMAGEN (fia.png) -->
         <section class="about-hero-creative">
             <div class="about-hero-text-side">
-                <!-- Título principal solicitado: About en negro, FIA'O en rojo con acento amarillo -->
                 <h1 class="creative-main-title">
                     About <span class="highlight-fiao">FIA'O</span>
                     <span class="title-accent-badge"></span>
@@ -39,69 +37,73 @@
                 </p>
             </div>
 
-            <!-- Composición visual moderna con elementos flotantes -->
             <div class="about-hero-graphic-side">
-                <div class="digital-notebook-mockup">
-                    <div class="mockup-header-dots">
-                        <span class="dot-red"></span>
-                        <span class="dot-yellow"></span>
-                        <span class="dot-green"></span>
+                <div class="image-slot-container">
+                    <img src="asset/img/fia.png" alt="FIA'O presentation graphic" class="custom-slot-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder-fallback" style="display:none;">
+                        <span class="fallback-icon">📱💼</span>
+                        <span class="fallback-text">visual/fia.png</span>
                     </div>
-                    <div class="mockup-screen-content">
-                        <div class="mockup-line title-line"></div>
-                        <div class="mockup-line text-line"></div>
-                        <div class="mockup-line short-line"></div>
-                        <div class="floating-badge-note">
-                            <span class="badge-icon">⚡</span>
-                            <span class="badge-text" data-en="Instant Sync" data-es="Sincronización Instantánea">Instant Sync</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="floating-card-ui card-1">
-                    <span data-en="Active Credits" data-es="Créditos Activos">Active Credits</span>
-                    <strong>$1,240.00</strong>
-                </div>
-                <div class="floating-card-ui card-2">
-                    <span data-en="Secure Notes" data-es="Notas Seguras">Secure Notes</span>
-                    <strong>100% Cloud</strong>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: MISIÓN Y VISIÓN CREATIVA -->
-        <section class="mission-vision-creative-grid">
-            <!-- Tarjeta de Misión -->
-            <div class="creative-mv-card mission-card">
-                <div class="card-top-accent"></div>
-                <div class="mv-visual-badge">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                    </svg>
+        <!-- SECCIÓN 2: MISIÓN Y VISIÓN CON TARJETAS INTERACTIVAS Y SEGUNDA IMAGEN (libreta.png) -->
+        <section class="mission-vision-wrapper">
+            <div class="mission-vision-creative-grid">
+                <div class="creative-mv-card mission-card" tabindex="0">
+                    <div class="card-top-accent"></div>
+                    <div class="mv-visual-badge">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h3 data-en="Our Mission" data-es="Nuestra Misión">Our Mission</h3>
+                    <p data-en="To provide a reliable, clean, and intuitive digital notebook experience that simplifies note-taking and financial tracking for individuals and local merchants alike."
+                       data-es="Brindar una experiencia de libreta digital confiable, limpia e intuitiva que simplifique la toma de notas y el seguimiento financiero tanto para particulares como para comerciantes locales.">
+                        To provide a reliable, clean, and intuitive digital notebook experience that simplifies note-taking and financial tracking for individuals and local merchants alike.
+                    </p>
+                    <div class="card-reveal-content">
+                        <p data-en="FIA'O actively assists small merchants by structuring credit records, automating reminders, and ensuring day-to-day operations run transparently without calculation errors."
+                           data-es="FIA'O ayuda activamente a los pequeños comerciantes estructurando registros de crédito, automatizando recordatorios y asegurando que las operaciones diarias funcionen con transparencia.">
+                            FIA'O actively assists small merchants by structuring credit records, automating reminders, and ensuring day-to-day operations run transparently without calculation errors.
+                        </p>
+                    </div>
                 </div>
-                <h3 data-en="Our Mission" data-es="Nuestra Misión">Our Mission</h3>
-                <p data-en="To provide a reliable, clean, and intuitive digital notebook experience that simplifies note-taking and financial tracking for individuals and local merchants alike."
-                   data-es="Brindar una experiencia de libreta digital confiable, limpia e intuitiva que simplifique la toma de notas y el seguimiento financiero tanto para particulares como para comerciantes locales.">
-                    To provide a reliable, clean, and intuitive digital notebook experience that simplifies note-taking and financial tracking for individuals and local merchants alike.
-                </p>
+
+                <div class="creative-mv-card vision-card" tabindex="0">
+                    <div class="card-top-accent yellow-accent"></div>
+                    <div class="mv-visual-badge yellow-bg">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 data-en="Our Vision" data-es="Nuestra Visión">Our Vision</h3>
+                    <p data-en="To become the benchmark platform for digital organization and credit management, recognized for our security, elegance, and user-centric design."
+                       data-es="Convertirnos en la plataforma de referencia para la organización digital y gestión de créditos, reconocidos por nuestra seguridad, elegancia y diseño enfocado en el usuario.">
+                        To become the benchmark platform for digital organization and credit management, recognized for our security, elegance, and user-centric design.
+                    </p>
+                    <div class="card-reveal-content">
+                        <p data-en="We aspire to become the leading digital ecosystem for neighborhood stores across Panama and Latin America, driving sustainable financial growth and innovation."
+                           data-es=" Aspiramos a convertirnos en el ecosistema digital líder para tiendas de barrio en Panamá y Latinoamérica, impulsando el crecimiento financiero sostenible.">
+                            We aspire to become the leading digital ecosystem for neighborhood stores across Panama and Latin America, driving sustainable financial growth and innovation.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Tarjeta de Visión -->
-            <div class="creative-mv-card vision-card">
-                <div class="card-top-accent yellow-accent"></div>
-                <div class="mv-visual-badge yellow-bg">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                    </svg>
+            <div class="mission-vision-graphic-container">
+                <div class="image-slot-container secondary-slot">
+                    <img src="asset/img/libreta.png" alt="Digital notebook planning graphic" class="custom-slot-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder-fallback" style="display:none;">
+                        <span class="fallback-icon">📊📈</span>
+                        <span class="fallback-text">visual/libreta.png</span>
+                    </div>
                 </div>
-                <h3 data-en="Our Vision" data-es="Nuestra Visión">Our Vision</h3>
-                <p data-en="To become the benchmark platform for digital organization and credit management, recognized for our security, elegance, and user-centric design."
-                   data-es="Convertirnos en la plataforma de referencia para la organización digital y gestión de créditos, reconocidos por nuestra seguridad, elegancia y diseño enfocado en el usuario.">
-                    To become the benchmark platform for digital organization and credit management, recognized for our security, elegance, and user-centric design.
-                </p>
             </div>
         </section>
 
-        <!-- SECCIÓN 3: BENEFICIOS PRINCIPALES CON ILUSTRACIONES VISUALES -->
+        <!-- SECCIÓN 3: BENEFICIOS PRINCIPALES CON TARJETAS INTERACTIVAS -->
         <section class="benefits-creative-section">
             <div class="creative-section-header">
                 <span class="section-tag" data-en="ADVANTAGES" data-es="VENTAJAS">ADVANTAGES</span>
@@ -110,8 +112,7 @@
             </div>
 
             <div class="benefits-creative-grid">
-                <!-- Beneficio 1: Note Organization -->
-                <div class="benefit-interactive-card">
+                <div class="benefit-interactive-card" tabindex="0">
                     <div class="benefit-illustration-box">
                         <div class="ill-note-sheet">
                             <div class="ill-line"></div>
@@ -121,10 +122,15 @@
                     </div>
                     <h3 data-en="Note Organization" data-es="Organización de Apuntes">Note Organization</h3>
                     <p data-en="Structure your thoughts, daily tasks, and records logically without losing important information." data-es="Estructura tus ideas, tareas diarias y registros de forma lógica sin perder información importante.">Structure your thoughts, daily tasks, and records logically without losing important information.</p>
+                    <div class="card-reveal-content">
+                        <p data-en="Easily categorize custom notes, track daily customer orders, and maintain clean digital ledgers for all your business transactions."
+                           data-es="Categoriza fácilmente notas personalizadas, rastrea pedidos diarios y mantén registros digitales limpios para todas tus transacciones.">
+                            Easily categorize custom notes, track daily customer orders, and maintain clean digital ledgers for all your business transactions.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Beneficio 2: Ease of Use -->
-                <div class="benefit-interactive-card">
+                <div class="benefit-interactive-card" tabindex="0">
                     <div class="benefit-illustration-box yellow-theme">
                         <div class="ill-interface-mock">
                             <div class="ill-circle-btn"></div>
@@ -134,10 +140,15 @@
                     </div>
                     <h3 data-en="Ease of Use" data-es="Facilidad de Uso">Ease of Use</h3>
                     <p data-en="A clean, minimalist user interface designed so you can start managing notes immediately with zero friction." data-es="Una interfaz de usuario limpia y minimalista diseñada para que comiences a gestionar notas inmediatamente sin fricción.">A clean, minimalist user interface designed so you can start managing notes immediately with zero friction.</p>
+                    <div class="card-reveal-content">
+                        <p data-en="Simplifies everyday administrative tasks through intuitive navigation, responsive design, and instant multi-language support."
+                           data-es="Simplifica las tareas administrativas cotidianas a través de una navegación intuitiva, diseño responsivo y soporte multilingüe instantáneo.">
+                            Simplifies everyday administrative tasks through intuitive navigation, responsive design, and instant multi-language support.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Beneficio 3: Quick Information Access -->
-                <div class="benefit-interactive-card">
+                <div class="benefit-interactive-card" tabindex="0">
                     <div class="benefit-illustration-box red-theme">
                         <div class="ill-search-mock">
                             <div class="ill-magnifier">🔍</div>
@@ -147,7 +158,26 @@
                     </div>
                     <h3 data-en="Quick Information Access" data-es="Acceso a la Información">Quick Information Access</h3>
                     <p data-en="Find specific accounts, records, or notes in seconds using our streamlined navigation structure." data-es="Encuentra cuentas, registros o notas específicas en segundos usando nuestra estructura de navegación ágil.">Find specific accounts, records, or notes in seconds using our streamlined navigation structure.</p>
+                    <div class="card-reveal-content">
+                        <p data-en="Access live customer ledgers, check credit balances instantly, and retrieve stored history without flipping through paper books."
+                           data-es="Accede a registros de clientes en vivo, verifica saldos de crédito instantáneamente y recupera historiales sin hojear libros de papel.">
+                            Access live customer ledgers, check credit balances instantly, and retrieve stored history without flipping through paper books.
+                        </p>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: LLAMADA A LA ACCIÓN FINAL (GET STARTED) -->
+        <section class="get-started-cta-section">
+            <div class="cta-content-box">
+                <h2 data-en="Ready to Get Started with FIA’O?" data-es="¿Listo para comenzar a utilizar FIA’O?">Ready to Get Started with FIA’O?</h2>
+                <p data-en="Take control of your notes, accounts, and daily business operations with FIA’O." data-es="Toma el control de tus notas, cuentas y operaciones comerciales diarias con FIA’O.">
+                    Take control of your notes, accounts, and daily business operations with FIA’O.
+                </p>
+                <a href="index.html#top" target="_parent" class="btn-cta-red" id="scrollToTopBtn" data-en="Get Started with FIA'O" data-es="Comenzar con FIA'O">
+                    Get Started with FIA'O
+                </a>
             </div>
         </section>
 

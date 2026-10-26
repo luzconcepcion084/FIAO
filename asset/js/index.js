@@ -1,16 +1,16 @@
 const carouselData = [
     {
-        image: "asset/img/movil.png",
+        image: "asset/img/slide1.png",
         en: "Digitize customer, debt, and payment management for convenience stores in Panama.",
         es: "Digitaliza la gestión de clientes, deudas y pagos para minisupermercados en Panamá."
     },
     {
-        image: "asset/img/movil.png",
+        image: "asset/img/slide2.png",
         en: "Track daily collections and manage active credit balances safely and fast.",
         es: "Lleva el control de cobros diarios y administra saldos de crédito activos de forma segura y rápida."
     },
     {
-        image: "asset/img/movil.png",
+        image: "asset/img/slide3.png",
         en: "Transparent statements and direct digital payment gateways for all your customers.",
         es: "Estados de cuenta transparentes y pasarelas de pago digital directas para todos tus clientes."
     }
@@ -22,6 +22,10 @@ let slideInterval;
 document.addEventListener('DOMContentLoaded', function() {
     if (!localStorage.getItem('fiao_lang')) {
         localStorage.setItem('fiao_lang', 'en');
+    }
+
+    if (localStorage.getItem('fiao_theme') === 'dark') {
+        document.body.classList.add('dark-mode');
     }
     
     initCarousel();
@@ -69,7 +73,6 @@ function currentSlide(index) {
     slideInterval = setInterval(nextSlide, 5000);
 }
 
-/* Permite que al tocar 'About Us' baje suavemente hacia el iframe */
 function setupSmoothScrollAnchors() {
     document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -108,6 +111,12 @@ function setupLangAndThemeToggle() {
 
             applyTranslation(newLang);
             showSlide(currentSlideIndex);
+
+            // AVISAR AL IFRAME (ABOUT) DEL CAMBIO DE IDIOMA
+            const iframe = document.getElementById('aboutFrame');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({ fiaoLang: newLang }, '*');
+            }
         });
     }
 
@@ -115,7 +124,8 @@ function setupLangAndThemeToggle() {
     if (themeBtn) {
         const updateThemeText = () => {
             const activeLang = localStorage.getItem('fiao_lang') || 'en';
-            themeBtn.textContent = activeLang === 'es' ? 'Tema' : 'Theme';
+            const isDark = document.body.classList.contains('dark-mode');
+            themeBtn.textContent = activeLang === 'es' ? (isDark ? 'Claro' : 'Tema') : (isDark ? 'Light' : 'Theme');
         };
 
         updateThemeText();
@@ -125,6 +135,12 @@ function setupLangAndThemeToggle() {
             const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('fiao_theme', isDark ? 'dark' : 'light');
             updateThemeText();
+
+            // AVISAR AL IFRAME (ABOUT) DEL CAMBIO DE TEMA
+            const iframe = document.getElementById('aboutFrame');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({ fiaoTheme: isDark ? 'dark' : 'light' }, '*');
+            }
         };
 
         if (langBtn) {
@@ -142,3 +158,12 @@ function applyTranslation(lang) {
         }
     });
 }
+
+window.addEventListener('message', function(e) {
+    if (e.data && e.data.fiaoHeight) {
+        const iframe = document.getElementById('aboutFrame');
+        if (iframe) {
+            iframe.style.height = e.data.fiaoHeight + 'px';
+        }
+    }
+});

@@ -1,55 +1,102 @@
-/* ========================================= */
-/* LÓGICA DE REGISTRO - FIA'O                */
-/* ========================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const typeOwner = document.getElementById('type-owner');
+    const typeCustomer = document.getElementById('type-customer');
+    const businessNameGroup = document.getElementById('business-name-group');
+    const businessNameInput = document.getElementById('businessname');
 
-let selectedRegisterRole = 'owner';
+    if (typeOwner && typeCustomer && businessNameGroup) {
+        typeOwner.addEventListener('click', () => {
+            typeOwner.classList.add('active');
+            typeCustomer.classList.remove('active');
+            businessNameGroup.style.display = 'block';
+            businessNameInput.setAttribute('required', 'true');
+        });
 
-function setRegisterRole(role) {
-    selectedRegisterRole = role;
-    const ownerBtn = document.getElementById('roleOwnerBtn');
-    const clientBtn = document.getElementById('roleClientBtn');
-
-    if (ownerBtn) ownerBtn.classList.toggle('active', role === 'owner');
-    if (clientBtn) clientBtn.classList.toggle('active', role === 'client');
-
-    const storeGroup = document.getElementById('storeGroup');
-    if (storeGroup) {
-        storeGroup.style.display = role === 'owner' ? 'block' : 'none';
+        typeCustomer.addEventListener('click', () => {
+            typeCustomer.classList.add('active');
+            typeOwner.classList.remove('active');
+            businessNameGroup.style.display = 'none';
+            businessNameInput.removeAttribute('required');
+            businessNameInput.value = ''; 
+        });
     }
-}
 
-function toggleRegPassView() {
-    const passInput = document.getElementById('regPassword');
-    const slashLine = document.getElementById('eyeSlashLine');
-
-    if (passInput) {
-        if (passInput.type === 'password') {
-            passInput.type = 'text';
-            if (slashLine) slashLine.style.display = 'none';
-        } else {
-            passInput.type = 'password';
-            if (slashLine) slashLine.style.display = 'block';
+    function setupTogglePassword(toggleId, inputId) {
+        const toggleBtn = document.getElementById(toggleId);
+        const inputField = document.getElementById(inputId);
+        if (toggleBtn && inputField) {
+            toggleBtn.addEventListener('click', () => {
+                const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+                inputField.setAttribute('type', type);
+                toggleBtn.classList.toggle('fa-eye');
+                toggleBtn.classList.toggle('fa-eye-slash');
+            });
         }
     }
-}
 
-function executeRegister(e) {
-    e.preventDefault();
-    const fullName = document.getElementById('regFullName').value.trim();
-    const idNumber = document.getElementById('regIdNumber').value.trim();
-    const email = document.getElementById('regEmail').value.trim();
-    const storeName = selectedRegisterRole === 'owner' ? document.getElementById('regStoreName').value.trim() : '';
+    setupTogglePassword('togglePassword', 'password');
+    setupTogglePassword('toggleConfirmPassword', 'confirmpassword');
 
-    const userSession = {
-        name: fullName,
-        idNumber: idNumber,
-        email: email,
-        role: selectedRegisterRole,
-        store: storeName
-    };
+    const langBtn = document.getElementById('lang-btn');
+    let currentLang = localStorage.getItem('fia_lang') || 'EN';
 
-    localStorage.setItem('fiao_user', JSON.stringify(userSession));
+    function setLanguage(lang) {
+        currentLang = lang;
+        if (langBtn) langBtn.textContent = lang === 'EN' ? 'ES' : 'EN';
+        localStorage.setItem('fia_lang', lang);
 
-    // REDIRECCIÓN DIRECTA AL DASHBOARD
-    window.location.href = "dashboard.html";
-}
+        document.querySelectorAll('[data-en]').forEach(el => {
+            const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
+            if (translation) {
+                if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
+                    el.placeholder = translation;
+                } else {
+                    el.textContent = translation;
+                }
+            }
+        });
+    }
+
+    setLanguage(currentLang);
+
+    if (langBtn) {
+        langBtn.addEventListener('click', () => {
+            const nextLang = currentLang === 'EN' ? 'ES' : 'EN';
+            setLanguage(nextLang);
+        });
+    }
+
+    const themeBtn = document.getElementById('theme-btn');
+    const currentTheme = localStorage.getItem('fia_theme') || 'light';
+
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('fia_theme', isDark ? 'dark' : 'light');
+        });
+    }
+
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const isOwner = typeOwner.classList.contains('active');
+            const fullName = document.getElementById('fullname').value.trim();
+            
+            // Guardamos el nombre tal cual lo escribiste y marcamos que es usuario NUEVO
+            localStorage.setItem('fia_user_name', fullName);
+            localStorage.setItem('fia_is_new_user', 'true'); 
+            
+            if (isOwner) {
+                window.location.href = 'owner-dashboard.html';
+            } else {
+                window.location.href = 'customer-dashboard.html';
+            }
+        });
+    }
+});

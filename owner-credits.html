@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIA'O - Credits & Fiados</title>
+    <link rel="stylesheet" href="asset/css/owner-credits.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Fondo decorativo -->
+    <div class="bg-shape-top"></div>
+    <div class="bg-shape-bottom"></div>
+
+    <!-- Navbar corporativo original con enlace fijo a Credits -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <div class="nav-logo">FIA<span>'</span>O</div>
+            <nav class="nav-menu">
+                <a href="owner-dashboard.html" class="nav-link" data-en="Dashboard" data-es="Panel">Dashboard</a>
+                <a href="owner-credits.html" class="nav-link active" data-en="Credits" data-es="Créditos">Credits</a>
+                <a href="owner-clients.html" class="nav-link" data-en="Clients" data-es="Clientes">Clients</a>
+                <a href="owner-products.html" class="nav-link" data-en="Products" data-es="Productos">Products</a>
+                <a href="owner-reports.html" class="nav-link" data-en="Reports" data-es="Reportes">Reports</a>
+            </nav>
+            <div class="nav-right-actions">
+                <button id="lang-btn" class="action-pill-btn">ES</button>
+                <button id="theme-btn" class="action-pill-btn">Theme</button>
+                
+                <!-- Bolita circular del perfil -->
+                <div class="profile-menu-container">
+                    <div class="profile-avatar-btn" id="profileToggle">
+                        <span id="userInitials">BO</span>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fa-regular fa-user"></i> <span data-en="My Profile" data-es="Mi Perfil">My Profile</span>
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fa-solid fa-gear"></i> <span data-en="Settings" data-es="Ajustes">Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="login.html" class="dropdown-item logout" id="logoutBtn">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> <span data-en="Log Out" data-es="Cerrar Sesión">Log Out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="dashboard-main">
+        <!-- Encabezado de la Sección -->
+        <div class="credits-header-section">
+            <div class="title-wrap">
+                <h1 data-en="Credits / Fiados" data-es="Créditos / Fiados">Credits / Fiados</h1>
+                <p data-en="Manage store credits, customer limits, and track active debts." data-es="Administra créditos de la tienda, límites de clientes y deudas activas.">Manage store credits, customer limits, and track active debts.</p>
+            </div>
+            <div class="action-buttons-wrap">
+                <button class="btn-primary-fiao" id="openNewCreditModal">
+                    <i class="fa-solid fa-plus"></i> <span data-en="New Credit" data-es="Nuevo Crédito">New Credit</span>
+                </button>
+                <button class="btn-secondary-fiao" id="openAddCustomerModal">
+                    <i class="fa-solid fa-user-plus"></i> <span data-en="Add Customer" data-es="Agregar Cliente">Add Customer</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tarjetas de Resumen Financiero (Debt Overview) -->
+        <div class="financial-grid">
+            <div class="financial-card">
+                <div class="card-icon red"><i class="fa-solid fa-wallet"></i></div>
+                <div class="card-info">
+                    <span class="card-label" data-en="Outstanding Debt" data-es="Deuda Pendiente">Outstanding Debt</span>
+                    <h2 class="card-value" id="statOutstandingDebt">B/. 0.00</h2>
+                    <span class="card-trend negative" data-en="Total active balance" data-es="Saldo activo total">Total active balance</span>
+                </div>
+            </div>
+            <div class="financial-card">
+                <div class="card-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="card-info">
+                    <span class="card-label" data-en="Payments Today" data-es="Pagos Hoy">Payments Today</span>
+                    <h2 class="card-value" id="statPaymentsToday">B/. 0.00</h2>
+                    <span class="card-trend positive" data-en="Collected today" data-es="Recaudado hoy">Collected today</span>
+                </div>
+            </div>
+            <div class="financial-card">
+                <div class="card-icon yellow"><i class="fa-solid fa-users"></i></div>
+                <div class="card-info">
+                    <span class="card-label" data-en="Customers with Debt" data-es="Clientes con Deuda">Customers with Debt</span>
+                    <h2 class="card-value" id="statCustomersWithDebt">0</h2>
+                    <span class="card-trend neutral" data-en="Active accounts" data-es="Cuentas activas">Active accounts</span>
+                </div>
+            </div>
+            <div class="financial-card">
+                <div class="card-icon dark"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="card-info">
+                    <span class="card-label" data-en="Overdue Credits" data-es="Créditos Vencidos">Overdue Credits</span>
+                    <h2 class="card-value" id="statOverdueCredits">0</h2>
+                    <span class="card-trend negative" data-en="Require attention" data-es="Requieren atención">Require attention</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel de Control y Selección de Cliente -->
+        <div class="control-panel-grid">
+            <div class="customer-selection-card">
+                <div class="section-title-row">
+                    <h3 data-en="Select Customer Account" data-es="Seleccionar Cuenta de Cliente">Select Customer Account</h3>
+                    <div class="auto-block-toggle-wrap">
+                        <span data-en="Auto-Block" data-es="Bloqueo Auto">Auto-Block</span>
+                        <label class="switch">
+                            <input type="checkbox" id="autoBlockToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="search-box-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="customerSearchInput" placeholder="Search customer by name..." data-en-placeholder="Search customer by name..." data-es-placeholder="Buscar cliente por nombre...">
+                </div>
+                <div class="customer-dropdown-list" id="customerSelectList"></div>
+
+                <div class="selected-customer-details" id="selectedCustomerDetails">
+                    <div class="empty-selection-msg" data-en="Select a customer to view credit limits and debt details." data-es="Selecciona un cliente para ver límites de crédito y deudas.">
+                        Select a customer to view credit limits and debt details.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listado General de Créditos y Filtros -->
+            <div class="credits-main-list-card">
+                <div class="list-header-row">
+                    <h3 data-en="Active Credits List" data-es="Lista de Créditos Activos">Active Credits List</h3>
+                    <div class="filter-tabs">
+                        <button class="filter-btn active" data-filter="all" data-en="All" data-es="Todos">All</button>
+                        <button class="filter-btn" data-filter="pending" data-en="Pending" data-es="Pendiente">Pending</button>
+                        <button class="filter-btn" data-filter="partial" data-en="Partially Paid" data-es="Abonado">Partially Paid</button>
+                        <button class="filter-btn" data-filter="paid" data-en="Paid" data-es="Pagado">Paid</button>
+                        <button class="filter-btn" data-filter="overdue" data-en="Overdue" data-es="Vencido">Overdue</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="fiao-table" id="creditsTable">
+                        <thead>
+                            <tr>
+                                <th data-en="Customer" data-es="Cliente">Customer</th>
+                                <th data-en="Description" data-es="Descripción">Description</th>
+                                <th data-en="Original" data-es="Original">Original</th>
+                                <th data-en="Balance" data-es="Saldo">Balance</th>
+                                <th data-en="Due Date" data-es="Vencimiento">Due Date</th>
+                                <th data-en="Status" data-es="Estado">Status</th>
+                                <th data-en="Actions" data-es="Acciones">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="creditsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historial y Actividad -->
+        <div class="bottom-sections-grid">
+            <div class="card-container">
+                <h3 data-en="Customer Debt History" data-es="Historial de Deuda del Cliente">Customer Debt History</h3>
+                <div class="table-responsive">
+                    <table class="fiao-table" id="debtHistoryTable">
+                        <thead>
+                            <tr>
+                                <th data-en="Date" data-es="Fecha">Date</th>
+                                <th data-en="Item" data-es="Artículo">Item</th>
+                                <th data-en="Amount" data-es="Monto">Amount</th>
+                                <th data-en="Paid" data-es="Abonado">Paid</th>
+                                <th data-en="Balance" data-es="Saldo">Balance</th>
+                                <th data-en="Status" data-es="Estado">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="debtHistoryBody">
+                            <tr>
+                                <td colspan="6" class="text-center" data-en="Select a customer to view history" data-es="Selecciona un cliente para ver su historial">Select a customer to view history</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="section-title-row">
+                    <h3 data-en="Recent Activity" data-es="Actividad Reciente">Recent Activity</h3>
+                    <button class="text-link-btn" id="viewAllActivityBtn" data-en="View All" data-es="Ver Todo">View All</button>
+                </div>
+                <div class="activity-list" id="recentActivityList"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL: Add Customer -->
+    <div class="modal-backdrop" id="addCustomerModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeCustomerModal">&times;</button>
+            <h2 data-en="Add New Customer" data-es="Agregar Nuevo Cliente">Add New Customer</h2>
+            <p data-en="Register customer details and credit limit." data-es="Registra los datos del cliente y límite de crédito.">Register customer details and credit limit.</p>
+            <form id="addCustomerForm">
+                <div class="input-group">
+                    <label data-en="Full Name" data-es="Nombre Completo">Full Name</label>
+                    <input type="text" id="custFullName" placeholder="e.g. Carlos Pérez" required>
+                </div>
+                <div class="input-group">
+                    <label data-en="Phone Number" data-es="Número de Teléfono">Phone Number</label>
+                    <input type="text" id="custPhone" placeholder="+507 6000-0000" required>
+                </div>
+                <div class="input-group">
+                    <label data-en="Email Address (Optional)" data-es="Correo Electrónico (Opcional)">Email Address (Optional)</label>
+                    <input type="email" id="custEmail" placeholder="customer@example.com">
+                </div>
+                <div class="input-group">
+                    <label data-en="Credit Limit (B/.)" data-es="Límite de Crédito (B/.)">Credit Limit (B/.)</label>
+                    <input type="number" id="custLimit" step="0.01" min="0" placeholder="30.00" required>
+                </div>
+                <div class="input-group">
+                    <label data-en="Notes (Optional)" data-es="Notas (Opcional)">Notes (Optional)</label>
+                    <textarea id="custNotes" placeholder="Additional details..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary-fiao full-width" data-en="Save Customer" data-es="Guardar Cliente">Save Customer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: New Credit -->
+    <div class="modal-backdrop" id="newCreditModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeCreditModal">&times;</button>
+            <h2 data-en="Register New Credit (Fiado)" data-es="Registrar Nuevo Crédito (Fiado)">Register New Credit (Fiado)</h2>
+            <p data-en="Assign items to customer account." data-es="Asigna artículos a la cuenta del cliente.">Assign items to customer account.</p>
+            <form id="newCreditForm">
+                <div class="input-group">
+                    <label data-en="Select Customer" data-es="Seleccionar Cliente">Select Customer</label>
+                    <select id="creditCustSelect" required>
+                        <option value="">-- Choose customer --</option>
+                    </select>
+                </div>
+                <div class="credit-preview-box" id="creditPreviewBox">
+                    <span data-en="Limit: B/. 0.00 | Debt: B/. 0.00 | Available: B/. 0.00" data-es="Límite: B/. 0.00 | Deuda: B/. 0.00 | Disponible: B/. 0.00">Limit: B/. 0.00 | Debt: B/. 0.00 | Available: B/. 0.00</span>
+                </div>
+                <div class="input-group">
+                    <label data-en="Product / Description" data-es="Producto / Descripción">Product / Description</label>
+                    <input type="text" id="credItemDesc" placeholder="e.g. 1 Sack of Rice & Oil" required>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label data-en="Quantity" data-es="Cantidad">Quantity</label>
+                        <input type="number" id="credQty" min="1" value="1" required>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Unit Price (B/.)" data-es="Precio Unitario (B/.)">Unit Price (B/.)</label>
+                        <input type="number" id="credUnitPrice" step="0.01" min="0.01" placeholder="0.00" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label data-en="Total Amount (B/.)" data-es="Monto Total (B/.)">Total Amount (B/.)</label>
+                    <input type="text" id="credTotalAmount" readonly value="B/. 0.00">
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label data-en="Date" data-es="Fecha">Date</label>
+                        <input type="date" id="credDate" required>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Due Date (Optional)" data-es="Vencimiento (Opcional)">Due Date (Optional)</label>
+                        <input type="date" id="credDueDate">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary-fiao full-width" data-en="Save Credit" data-es="Guardar Crédito">Save Credit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Register Payment & Mark as Paid -->
+    <div class="modal-backdrop" id="registerPaymentModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closePaymentModal">&times;</button>
+            <h2 data-en="Register Payment & Mark as Paid" data-es="Registrar Pago y Marcar como Pagado">Register Payment & Mark as Paid</h2>
+            <p data-en="Apply partial or full payment to reduce customer debt." data-es="Aplica abono parcial o pago total para reducir la deuda del cliente.">Apply partial or full payment to reduce customer debt.</p>
+            <form id="registerPaymentForm">
+                <input type="hidden" id="payCreditId">
+                <div class="input-group">
+                    <label data-en="Customer" data-es="Cliente">Customer</label>
+                    <input type="text" id="payCustName" readonly>
+                </div>
+                <div class="input-group">
+                    <label data-en="Credit Item" data-es="Artículo de Crédito">Credit Item</label>
+                    <input type="text" id="payItemDesc" readonly>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label data-en="Pending Balance" data-es="Saldo Pendiente">Pending Balance</label>
+                        <input type="text" id="payPendingBalance" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Payment Amount (B/.)" data-es="Monto a Pagar (B/.)">Payment Amount (B/.)</label>
+                        <input type="number" id="payAmount" step="0.01" min="0.01" placeholder="0.00" required>
+                    </div>
+                </div>
+                <div class="payment-modal-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button type="button" class="btn-secondary-fiao full-width" id="markFullPaidBtn" data-en="Mark as Fully Paid" data-es="Marcar Pagado Completo">Mark as Fully Paid</button>
+                    <button type="submit" class="btn-primary-fiao full-width" data-en="Register Payment" data-es="Registrar Pago">Register Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="asset/js/owner-credits.js"></script>
+</body>
+</html>

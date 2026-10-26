@@ -3,148 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIA'O - Sign Up</title>
-    <link rel="stylesheet" href="asset/css/global.css">
-    <link rel="stylesheet" href="asset/css/login.css">
+    <title>FIA'O - Register</title>
+    <link rel="stylesheet" href="asset/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="login-body">
+<body>
 
-    <!-- BARRA DE NAVEGACIÓN GLOBAL -->
-    <header class="navbar main-top-nav">
-        <div class="logo">FIA<span class="yellow-text">'O</span></div>
-        <nav class="nav-links">
-            <a href="index.html" data-en="Home" data-es="Inicio">Home</a>
-            <a href="about.html" data-en="About Us" data-es="Nosotros">About Us</a>
-            <a href="index.html#credit" data-en="Credit" data-es="Créditos">Credit</a>
-            <a href="index.html#products" data-en="Products" data-es="Productos">Products</a>
-            <a href="index.html#clients" data-en="Clients" data-es="Clientes">Clients</a>
-            <a href="index.html#reports" data-en="Reports" data-es="Reportes">Reports</a>
-        </nav>
+    <!-- Fondo decorativo superior izquierdo -->
+    <div class="bg-shape-top"></div>
 
-        <div class="nav-actions">
-            <button id="langToggle" class="nav-btn-icon">🌐 <span id="langLabel">ES</span></button>
-            <button id="themeToggle" class="nav-btn-icon">🌙</button>
-            <div id="userNavArea"></div>
+    <!-- Navbar idéntico al login -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <div class="nav-logo">FIA<span>'</span>O</div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link" data-en="Home" data-es="Inicio">Home</a>
+                <a href="about.html" class="nav-link" data-en="About Us" data-es="Sobre Nosotros">About Us</a>
+                <a href="credit.html" class="nav-link" data-en="Credit" data-es="Crédito">Credit</a>
+                <a href="products.html" class="nav-link" data-en="Products" data-es="Productos">Products</a>
+                <a href="clients.html" class="nav-link" data-en="Clients" data-es="Clientes">Clients</a>
+                <a href="reports.html" class="nav-link" data-en="Reports" data-es="Reportes">Reports</a>
+                <a href="contact.html" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+            </nav>
+            <div class="nav-right-actions">
+                <button id="lang-btn" class="action-pill-btn">ES</button>
+                <button id="theme-btn" class="action-pill-btn">Theme</button>
+            </div>
         </div>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL -->
-    <main class="login-main-container">
-        
-        <!-- Lado Izquierdo: Información y Botón de Regresar -->
-        <div class="login-info">
-            <div class="brand-title">FIA<span class="yellow-text">'O</span></div>
-            <h1 data-en="Join the digital revolution for your business" data-es="Únete a la revolución digital de tu negocio">Join the digital revolution for your business</h1>
-            <p class="subtitle" data-en="Secure credit management and ID verification for Panama" data-es="Gestión de crédito segura y verificación de identidad para Panamá">Secure credit management and ID verification for Panama</p>
+    <!-- Botón Back to Home -->
+    <div class="back-btn-wrapper">
+        <a href="index.html" class="back-home-btn" data-en="Back to Home" data-es="Volver al Inicio">
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
 
-            <div style="margin-bottom: 25px;">
-                <a href="index.html" class="btn-back-home" data-en="&larr; Back to Home" data-es="&larr; Volver al Inicio">&larr; Back to Home</a>
-            </div>
+    <!-- Fondo decorativo inferior derecho -->
+    <div class="bg-shape-bottom"></div>
 
-            <div class="feature-list" style="margin-top: 20px;">
-                <div class="feature-item">
-                    <div class="feature-icon">🛡️</div>
-                    <div>
-                        <h3 data-en="KYC Verification" data-es="Verificación de Identidad">KYC Verification</h3>
-                        <p data-en="Protect your store against fraud with secure ID tracking." data-es="Protege tu tienda contra fraudes con control seguro por cédula.">Protect your store against fraud with secure ID tracking.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">💸</div>
-                    <div>
-                        <h3 data-en="Yape & QR Payments" data-es="Pagos por Yape y QR">Yape & QR Payments</h3>
-                        <p data-en="Direct and encrypted digital payments to avoid errors." data-es="Pagos digitales directos y cifrados para evitar confusiones.">Direct and encrypted digital payments to avoid errors.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <!-- Espacio reservado para la imagen de FIA'O superior -->
+        <div class="brand-logo-box">
+            <img src="asset/img/fiao-logo.png" alt="FIA'O" class="brand-image-placeholder">
         </div>
 
-        <!-- Lado Derecho: Tarjeta de Registro -->
-        <div class="login-right-area">
-            <div class="login-card">
-                <h2 data-en="Create Account" data-es="Crear Cuenta">Create Account</h2>
-                <p class="card-subtitle" data-en="Select your role and complete your details" data-es="Selecciona tu rol y completa tus datos">Select your role and complete your details</p>
+        <div class="register-card">
+            <h1 data-en="Create Your FIA´O Account" data-es="Crea tu cuenta de FIA´O">Create Your FIA´O Account</h1>
+            <p class="subtitle" data-en="Choose how you want to use FIA'O" data-es="Elige cómo deseas usar FIA'O">Choose how you want to use FIA'O</p>
 
-                <form id="registerForm" onsubmit="executeRegister(event)">
-                    
-                    <!-- Botones de Selección de Rol -->
-                    <div class="role-selector">
-                        <button type="button" class="role-pill-btn active" id="roleOwnerBtn" onclick="setRegisterRole('owner')" 
-                                data-en="Register as store owner" data-es="Registrarse como dueño">Register as store owner</button>
-                        <button type="button" class="role-pill-btn" id="roleClientBtn" onclick="setRegisterRole('client')" 
-                                data-en="Register as customer" data-es="Registrarse como cliente">Register as customer</button>
-                    </div>
-
-                    <!-- Nombre Completo -->
-                    <div class="input-group">
-                        <label data-en="Full Name" data-es="Nombre Completo">Full Name</label>
-                        <input type="text" id="regFullName" placeholder="Juan Pérez" required>
-                    </div>
-
-                    <!-- Número de Cédula -->
-                    <div class="input-group">
-                        <label data-en="ID Number (Cédula)" data-es="Número de Cédula">ID Number (Cédula)</label>
-                        <input type="text" id="regIdNumber" placeholder="8-123-4567" required>
-                    </div>
-
-                    <!-- Nombre de Tienda -->
-                    <div class="input-group" id="storeGroup">
-                        <label data-en="Store / Business Name" data-es="Nombre del Negocio / Minisúper">Store / Business Name</label>
-                        <input type="text" id="regStoreName" placeholder="Minisúper Doña Rita">
-                    </div>
-
-                    <!-- Correo Electrónico -->
-                    <div class="input-group">
-                        <label data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
-                        <input type="email" id="regEmail" placeholder="example@domain.com" required autocomplete="off">
-                    </div>
-
-                    <!-- Contraseña con ojito SVG -->
-                    <div class="input-group">
-                        <label data-en="Password" data-es="Contraseña">Password</label>
-                        <div class="password-box-container">
-                            <input type="password" id="regPassword" placeholder="********" required>
-                            <span class="password-toggle-icon" onclick="toggleRegPassView()">
-                                <svg id="eyeIconSvg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path id="eyePath" d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                                    <line id="eyeSlashLine" x1="1" y1="1" x2="23" y2="23"></line>
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Botón de Registro -->
-                    <button type="submit" class="btn-red-submit" data-en="Register" data-es="Registrarse">Register</button>
-
-                    <!-- Enlace para volver a Iniciar Sesión -->
-                    <p class="signup-redirect">
-                        <span data-en="Already have an account?" data-es="¿Ya tienes una cuenta?">Already have an account?</span> 
-                        <a href="login.html" data-en="Log In" data-es="Iniciar Sesión">Log In</a>
-                    </p>
-                </form>
+            <!-- Selector de Tipo de Cuenta -->
+            <div class="account-type-selector">
+                <div class="account-option active" id="type-owner">
+                    <span class="option-title" data-en="Business Owner" data-es="Propietario de Negocio">Business Owner</span>
+                    <span class="option-desc" data-en="Manage your store." data-es="Gestiona tu tienda.">Manage your store.</span>
+                </div>
+                <div class="account-option" id="type-customer">
+                    <span class="option-title" data-en="Customer" data-es="Cliente">Customer</span>
+                    <span class="option-desc" data-en="View your accounts." data-es="Consulta tus cuentas.">View your accounts.</span>
+                </div>
             </div>
-        </div>
 
+            <form id="register-form">
+                <div class="input-group">
+                    <label for="fullname" data-en="Full Name" data-es="Nombre Completo">Full Name</label>
+                    <input type="text" id="fullname" placeholder="John Doe" required>
+                </div>
+
+                <!-- Campo dinámico: se oculta si es Customer -->
+                <div class="input-group" id="business-name-group">
+                    <label for="businessname" data-en="Business Name" data-es="Nombre del Negocio">Business Name</label>
+                    <input type="text" id="businessname" placeholder="Minisúper El Ahorro">
+                </div>
+
+                <div class="input-group">
+                    <label for="email" data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
+                    <input type="email" id="email" placeholder="name@example.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone" data-en="Phone Number" data-es="Número de Teléfono">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+507 0000-0000" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password" data-en="Password" data-es="Contraseña">Password</label>
+                    <div class="password-box">
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <i class="fa-regular fa-eye toggle-password" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmpassword" data-en="Confirm Password" data-es="Confirmar Contraseña">Confirm Password</label>
+                    <div class="password-box">
+                        <input type="password" id="confirmpassword" placeholder="••••••••" required>
+                        <i class="fa-regular fa-eye toggle-password" id="toggleConfirmPassword"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="sign-in-submit-btn" data-en="Create Account" data-es="Crear Cuenta">Create Account</button>
+
+                <p class="signup-footer-text">
+                    <span data-en="Already have an account?" data-es="¿Ya tienes una cuenta?">Already have an account?</span> 
+                    <a href="login.html" data-en="Sign In" data-es="Iniciar Sesión">Sign In</a>
+                </p>
+            </form>
+        </div>
     </main>
 
-    <script src="asset/js/main.js"></script>
     <script src="asset/js/register.js"></script>
-    <script>
-        // --- SOPORTE UNIVERSAL PARA EL ARROBA (@) EN REGISTRO ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const regEmailInput = document.getElementById('regEmail');
-            if (regEmailInput) {
-                regEmailInput.addEventListener('keydown', function(e) {
-                    if ((e.ctrlKey && e.altKey && (e.key === 'q' || e.key === 'Q')) || e.key === 'Dead') {
-                        e.preventDefault();
-                        const start = this.selectionStart;
-                        const end = this.selectionEnd;
-                        this.value = this.value.substring(0, start) + '@' + this.value.substring(end);
-                        this.selectionStart = this.selectionEnd = start + 1;
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html>

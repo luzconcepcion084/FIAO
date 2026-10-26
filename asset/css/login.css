@@ -1,0 +1,425 @@
+:root {
+    --primary-red: #A61E22;
+    --golden-yellow: #F4B942;
+    --cream-bg: #FFF7E8;
+    --text-dark: #2B2B2B;
+    --white: #FFFFFF;
+    --gray-border: #E5E7EB;
+    --input-bg: #FFFFFF;
+}
+
+/* Modo oscuro elegante y limpio: sin apagar el navbar ni recargar la vista */
+body.dark-theme {
+    --cream-bg: #121212;
+    --text-dark: #F3F4F6;
+    --white: #1E1E1E;
+    --gray-border: #333333;
+    --input-bg: #2A2A2A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--cream-bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Formas decorativas de fondo */
+.bg-shape-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(244,185,66,0.25) 0%, rgba(255,247,232,0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bg-shape-bottom {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(166,30,34,0.08) 0%, rgba(255,247,232,0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Navbar: Siempre mantiene su rojo corporativo vibrante y hermoso */
+.navbar-container {
+    width: 100%;
+    padding: 16px 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.navbar-content {
+    background-color: #A61E22 !important; /* Forzado siempre al rojo original */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 24px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.nav-logo {
+    color: #FFFFFF !important;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.nav-logo span {
+    color: var(--golden-yellow) !important;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #FFFFFF !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link.active {
+    background-color: var(--golden-yellow) !important;
+    color: #2B2B2B !important;
+    font-weight: 700;
+}
+
+.nav-right-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-pill-btn {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF !important;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.action-pill-btn:hover {
+    background-color: #FFFFFF;
+    color: #A61E22 !important;
+}
+
+/* Botón Back to Home */
+.back-btn-wrapper {
+    padding: 4px 35px;
+    position: relative;
+    z-index: 10;
+}
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary-red);
+    color: #FFFFFF;
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(166, 30, 34, 0.25);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.back-home-btn:hover {
+    background-color: #8E181C;
+    transform: translateY(-1px);
+}
+
+/* Contenido Principal */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px 40px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.brand-logo-box {
+    background-color: var(--white);
+    padding: 8px 22px;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-image-placeholder {
+    height: 32px;
+    object-fit: contain;
+}
+
+/* Tarjeta del Login */
+.login-card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.3s ease;
+}
+
+.login-card h1 {
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+body.dark-theme .subtitle {
+    color: #AAA;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--gray-border);
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s, background-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-red);
+}
+
+.password-box {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.toggle-password:hover {
+    color: var(--primary-red);
+}
+
+.forgot-wrapper {
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top: -8px;
+}
+
+.forgot-wrapper a {
+    color: var(--primary-red);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.forgot-wrapper a:hover {
+    text-decoration: underline;
+}
+
+.sign-in-submit-btn {
+    width: 100%;
+    background-color: var(--primary-red);
+    color: #FFFFFF;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.sign-in-submit-btn:hover {
+    background-color: #8E181C;
+}
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #888;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.or-divider::before, .or-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--gray-border);
+}
+
+.or-divider span {
+    padding: 0 10px;
+}
+
+.google-signin-btn {
+    width: 100%;
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+    border: 1.5px solid var(--gray-border);
+    padding: 11px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.google-signin-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.google-signin-btn:hover {
+    opacity: 0.9;
+}
+
+.signup-footer-text {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-top: 20px;
+}
+
+body.dark-theme .signup-footer-text {
+    color: #AAA;
+}
+
+.signup-footer-text a {
+    color: var(--primary-red);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.signup-footer-text a:hover {
+    text-decoration: underline;
+}
+
+/* Modal Forgot Password */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background-color: var(--white);
+    width: 90%;
+    max-width: 380px;
+    padding: 25px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.modal-card h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.modal-card p {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+body.dark-theme .modal-card p {
+    color: #AAA;
+}
