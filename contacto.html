@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIA'O - Contact & Support</title>
+    <link rel="stylesheet" href="asset/css/contacto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="bg-shape-top"></div>
+    <div class="bg-shape-bottom"></div>
+
+    <!-- Barra de Navegación Original -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <div class="nav-logo">FIA<span>'</span>O</div>
+            <nav class="nav-menu">
+                <a href="owner-dashboard.html" class="nav-link" data-en="Dashboard" data-es="Panel">Dashboard</a>
+                <a href="owner-credits.html" class="nav-link" data-en="Credits" data-es="Créditos">Credits</a>
+                <a href="owner-clients.html" class="nav-link" data-en="Clients" data-es="Clientes">Clients</a>
+                <a href="owner-products.html" class="nav-link" data-en="Products" data-es="Productos">Products</a>
+                <a href="owner-reports.html" class="nav-link" data-en="Reports" data-es="Reportes">Reports</a>
+                <a href="contacto.html" class="nav-link active" data-en="Support" data-es="Soporte">Support</a>
+            </nav>
+            <div class="nav-right-actions">
+                <button id="lang-btn" class="action-pill-btn">ES</button>
+                <button id="theme-btn" class="action-pill-btn">Theme</button>
+                
+                <div class="profile-menu-container">
+                    <div class="profile-avatar-btn" id="profileToggle">
+                        <span id="userInitials">BO</span>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fa-regular fa-user"></i> <span data-en="My Profile" data-es="Mi Perfil">My Profile</span>
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fa-solid fa-gear"></i> <span data-en="Settings" data-es="Ajustes">Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="login.html" class="dropdown-item logout" id="logoutBtn">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> <span data-en="Log Out" data-es="Cerrar Sesión">Log Out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <!-- Encabezado -->
+        <div class="credits-header-section">
+            <div class="title-wrap">
+                <h1 data-en="Contact & Support" data-es="Contacto y Soporte">Contact & Support</h1>
+                <p data-en="Need assistance? We're here to help you." data-es="¿Necesitas asistencia? Estamos aquí para ayudarte.">Need assistance? We're here to help you.</p>
+            </div>
+        </div>
+
+        <!-- Banner de Invitación al AI Assistant -->
+        <div class="card-container ai-banner-card">
+            <div class="ai-banner-content">
+                <div class="ai-banner-icon"><i class="fa-solid fa-robot"></i></div>
+                <div>
+                    <h3 data-en="Meet FIA’O AI Assistant" data-es="Conoce a FIA’O AI Assistant">Meet FIA’O AI Assistant</h3>
+                    <p data-en="Have questions about credits, debts, or products? Chat instantly with our intelligent assistant in the bottom right corner." data-es="¿Tienes dudas sobre créditos, deudas o productos? Chatea al instante con nuestro asistente inteligente en la esquina inferior derecha.">Have questions about credits, debts, or products? Chat instantly with our intelligent assistant in the bottom right corner.</p>
+                </div>
+            </div>
+            <button class="btn-secondary-fiao" id="openAiChatBannerBtn" data-en="Open AI Chat" data-es="Abrir Chat de IA">Open AI Chat</button>
+        </div>
+
+        <!-- Centro de Ayuda (FAQ) -->
+        <div class="card-container" style="margin-bottom: 25px;">
+            <div class="section-title-row" style="margin-bottom: 15px;">
+                <h3 data-en="Frequently Asked Questions" data-es="Preguntas Frecuentes">Frequently Asked Questions</h3>
+                <div class="search-box-wrap" style="max-width: 280px;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="faqSearchInput" placeholder="Search questions..." data-en-placeholder="Search questions..." data-es-placeholder="Buscar preguntas...">
+                </div>
+            </div>
+
+            <!-- Filtros por Categoría -->
+            <div class="faq-categories-row" style="margin-bottom: 20px;">
+                <button class="filter-btn active" data-category="all" data-en="All" data-es="Todas">All</button>
+                <button class="filter-btn" data-category="getting-started" data-en="Getting Started" data-es="Primeros Pasos">Getting Started</button>
+                <button class="filter-btn" data-category="account" data-en="Account & Security" data-es="Cuenta y Seguridad">Account & Security</button>
+                <button class="filter-btn" data-category="credits" data-en="Credits & Payments" data-es="Créditos y Pagos">Credits & Payments</button>
+                <button class="filter-btn" data-category="clients" data-en="Clients" data-es="Clientes">Clients</button>
+                <button class="filter-btn" data-category="products" data-en="Products" data-es="Productos y Stock">Products & Inventory</button>
+                <button class="filter-btn" data-category="reports" data-en="Reports" data-es="Reportes">Reports</button>
+                <button class="filter-btn" data-category="technical" data-en="Technical Support" data-es="Soporte Técnico">Technical Support</button>
+            </div>
+
+            <!-- Acordeón FAQ -->
+            <div class="faq-accordion-container" id="faqAccordion">
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span data-en="How do I create an account?" data-es="¿Cómo creo una cuenta?">How do I create an account?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="You can sign up by clicking 'Sign Up' on the login screen, choosing your role as Business Owner or Customer, and filling in your credentials." data-es="Puedes registrarte haciendo clic en 'Sign Up' en la pantalla de inicio de sesión, eligiendo tu rol como Dueño de Negocio o Cliente, y completando tus credenciales.">You can sign up by clicking 'Sign Up' on the login screen, choosing your role as Business Owner or Customer, and filling in your credentials.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="getting-started">
+                    <div class="faq-question">
+                        <span data-en="What's the difference between Business Owner and Customer?" data-es="¿Cuál es la diferencia entre Dueño de Negocio y Cliente?">What's the difference between Business Owner and Customer?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Business Owners manage store inventory, customer credit limits, and financial reports. Customers can view their active debts, payments, and linked stores." data-es="Los Dueños de Negocio administran el inventario de la tienda, límites de crédito de clientes y reportes financieros. Los Clientes pueden ver sus deudas activas, pagos y tiendas vinculadas.">Business Owners manage store inventory, customer credit limits, and financial reports. Customers can view their active debts, payments, and linked stores.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="credits">
+                    <div class="faq-question">
+                        <span data-en="How do I register a new credit?" data-es="¿Cómo registro un nuevo crédito?">How do I register a new credit?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Go to the Credits section, click '+ New Credit', select the customer, enter the product description, quantity, price, and due date, then save." data-es="Ve a la sección Credits, haz clic en '+ New Credit', selecciona al cliente, ingresa la descripción del producto, cantidad, precio y fecha de vencimiento, luego guarda.">Go to the Credits section, click '+ New Credit', select the customer, enter the product description, quantity, price, and due date, then save.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="clients">
+                    <div class="faq-question">
+                        <span data-en="How can I change a customer's credit limit?" data-es="¿Cómo puedo cambiar el límite de crédito de un cliente?">How can I change a customer's credit limit?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Navigate to Clients, select 'View Details' on the customer card, and click 'Edit' to modify their credit limit or auto-blocking rules." data-es="Dirígete a Clients, selecciona 'View Details' en la tarjeta del cliente y haz clic en 'Edit' para modificar su límite de crédito o reglas de bloqueo automático.">Navigate to Clients, select 'View Details' on the customer card, and click 'Edit' to modify their credit limit or auto-blocking rules.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="credits">
+                    <div class="faq-question">
+                        <span data-en="How do partial payments work?" data-es="¿Cómo funcionan los pagos parciales?">How do partial payments work?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="In Credits, click 'Register Payment' on any active debt. You can enter an amount lower than the total balance. The system will update the remaining debt automatically." data-es="En Credits, haz clic en 'Register Payment' en cualquier deuda activa. Puedes ingresar un monto menor al saldo total. El sistema actualizará la deuda restante automáticamente.">In Credits, click 'Register Payment' on any active debt. You can enter an amount lower than the total balance. The system will update the remaining debt automatically.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="account">
+                    <div class="faq-question">
+                        <span data-en="How do I link my account to a business?" data-es="¿Cómo vinculo mi cuenta a un negocio?">How do I link my account to a business?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Customers can request to link their account using the store business code. Once the owner approves the request, it will appear in their dashboard." data-es="Los clientes pueden solicitar vincular su cuenta usando el código de negocio de la tienda. Una vez que el dueño apruebe la solicitud, aparecerá en su panel.">Customers can request to link their account using the store business code. Once the owner approves the request, it will appear in their dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="products">
+                    <div class="faq-question">
+                        <span data-en="How can I add products to my inventory?" data-es="¿Cómo puedo agregar productos a mi inventario?">How can I add products to my inventory?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Go to Products, click '+ Add Product', fill in the name, category, price, stock, and upload or generate an image if desired." data-es="Ve a Products, haz clic en '+ Add Product', completa el nombre, categoría, precio, stock y sube o genera una imagen si lo deseas.">Go to Products, click '+ Add Product', fill in the name, category, price, stock, and upload or generate an image if desired.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="reports">
+                    <div class="faq-question">
+                        <span data-en="Can I export reports?" data-es="¿Puedo exportar reportes?">Can I export reports?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Yes! In the Reports section, you can use the 'Export PDF' and 'Export Excel' buttons to download real formatted files based on your filters." data-es="¡Sí! En la sección Reports, puedes usar los botones 'Export PDF' y 'Export Excel' para descargar archivos reales formateados según tus filtros.">Yes! In the Reports section, you can use the 'Export PDF' and 'Export Excel' buttons to download real formatted files based on your filters.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="account">
+                    <div class="faq-question">
+                        <span data-en="How can I recover my password?" data-es="¿Cómo puedo recuperar mi contraseña?">How can I recover my password?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Click 'Forgot Password' on the login screen and follow the instructions sent to your registered email address." data-es="Haz clic en 'Forgot Password' en la pantalla de inicio de sesión y sigue las instrucciones enviadas a tu correo electrónico registrado.">Click 'Forgot Password' on the login screen and follow the instructions sent to your registered email address.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="credits">
+                    <div class="faq-question">
+                        <span data-en="How do payment reminders work?" data-es="¿Cómo funcionan los recordatorios de pago?">How do payment reminders work?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="When a credit is overdue, a reminder button appears. Clicking it lets you customize a professional message and open WhatsApp or your email app to send it manually." data-es="Cuando un crédito está vencido, aparece un botón de recordatorio. Al hacer clic, te permite personalizar un mensaje profesional y abrir WhatsApp o tu app de correo para enviarlo manualmente.">When a credit is overdue, a reminder button appears. Clicking it lets you customize a professional message and open WhatsApp or your email app to send it manually.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="credits">
+                    <div class="faq-question">
+                        <span data-en="What happens if a customer doesn't pay?" data-es="¿Qué pasa si un cliente no paga?">What happens if a customer doesn't pay?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="The system tracks overdue dates and blocks new credit requests if auto-blocking is enabled, helping you manage store financial risk safely." data-es="El sistema realiza un seguimiento de las fechas de vencimiento y bloquea nuevas solicitudes de crédito si el bloqueo automático está activo, ayudándote a gestionar el riesgo financiero de la tienda de forma segura.">The system tracks overdue dates and blocks new credit requests if auto-blocking is enabled, helping you manage store financial risk safely.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario de Contacto y Canales Oficiales -->
+        <div class="support-grid-layout">
+            <div class="card-container">
+                <h3 style="margin-bottom: 5px;" data-en="Contact Support" data-es="Contactar Soporte">Contact Support</h3>
+                <p style="font-size: 12px; color: var(--subtext); margin-bottom: 20px;" data-en="Send a message to our support team." data-es="Envía un mensaje a nuestro equipo de soporte.">Send a message to our support team.</p>
+                
+                <form id="supportContactForm">
+                    <div class="input-group">
+                        <label data-en="Full Name" data-es="Nombre Completo">Full Name</label>
+                        <input type="text" id="suppName" placeholder="e.g. Carlos Pérez" required>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
+                        <input type="email" id="suppEmail" placeholder="support@fiao.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Subject" data-es="Asunto">Subject</label>
+                        <select id="suppSubject" required>
+                            <option value="General Question" data-en="General Question" data-es="Pregunta General">General Question</option>
+                            <option value="Account Problem" data-en="Account Problem" data-es="Problema de Cuenta">Account Problem</option>
+                            <option value="Credits & Payments" data-en="Credits & Payments" data-es="Créditos y Pagos">Credits & Payments</option>
+                            <option value="Products & Inventory" data-en="Products & Inventory" data-es="Productos e Inventario">Products & Inventory</option>
+                            <option value="Technical Issue" data-en="Technical Issue" data-es="Problema Técnico">Technical Issue</option>
+                            <option value="Other" data-en="Other" data-es="Otro">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Message" data-es="Mensaje">Message</label>
+                        <textarea id="suppMessage" rows="4" placeholder="Describe your issue or question..." data-en-placeholder="Describe your issue or question..." data-es-placeholder="Describe tu problema o pregunta..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary-fiao full-width" id="sendSupportBtn" data-en="Send Message" data-es="Enviar Mensaje">Send Message</button>
+                </form>
+            </div>
+
+            <div class="card-container">
+                <h3 style="margin-bottom: 5px;" data-en="Official Channels" data-es="Canales Oficiales">Official Channels</h3>
+                <p style="font-size: 12px; color: var(--subtext); margin-bottom: 20px;" data-en="Direct support details." data-es="Detalles de soporte directo.">Direct support details.</p>
+
+                <div class="channel-info-box" style="margin-bottom: 15px;">
+                    <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <span style="font-size: 11px; color: var(--subtext); display: block;" data-en="Support Email" data-es="Correo de Soporte">Support Email</span>
+                        <strong style="font-size: 13px; color: var(--text-dark);">support@fiao-app.com</strong>
+                    </div>
+                </div>
+
+                <div class="channel-info-box" style="margin-bottom: 15px;">
+                    <div class="c-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div>
+                        <span style="font-size: 11px; color: var(--subtext); display: block;" data-en="Business Hours" data-es="Horario de Atención">Business Hours</span>
+                        <strong style="font-size: 13px; color: var(--text-dark);">Monday - Friday: 8:00 AM - 6:00 PM</strong>
+                    </div>
+                </div>
+
+                <div class="channel-info-box">
+                    <div class="c-icon"><i class="fa-solid fa-headset"></i></div>
+                    <div>
+                        <span style="font-size: 11px; color: var(--subtext); display: block;" data-en="Additional Channel" data-es="Canal Adicional">Additional Channel</span>
+                        <strong style="font-size: 13px; color: var(--text-dark);">In-App AI Assistant (24/7)</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Moderno -->
+    <footer class="fiao-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="nav-logo">FIA<span>'</span>O</div>
+                <p data-en="Digital notebook and credit management for modern businesses." data-es="Cuaderno digital y gestión de créditos para negocios modernos.">Digital notebook and credit management for modern businesses.</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-en="Navigation" data-es="Navegación">Navigation</h4>
+                <a href="owner-dashboard.html" data-en="Dashboard" data-es="Panel">Dashboard</a>
+                <a href="owner-credits.html" data-en="Credits" data-es="Créditos">Credits</a>
+                <a href="owner-clients.html" data-en="Clients" data-es="Clientes">Clients</a>
+            </div>
+            <div class="footer-links">
+                <h4 data-en="Help & Support" data-es="Ayuda y Soporte">Help & Support</h4>
+                <a href="contacto.html" data-en="Help Center" data-es="Centro de Ayuda">Help Center</a>
+                <a href="contacto.html" data-en="Contact Us" data-es="Contáctanos">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 FIA'O. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- FIA’O AI Assistant Floating Widget -->
+    <div class="ai-chat-widget-container">
+        <button class="ai-floating-btn" id="aiChatToggleBtn" title="FIA'O AI Assistant">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+
+        <div class="ai-chat-window" id="aiChatWindow">
+            <div class="ai-chat-header">
+                <div class="ai-chat-title-wrap">
+                    <div class="ai-avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div>
+                        <h4>FIA’O AI Assistant</h4>
+                        <span style="font-size: 10px; color: #10B981; font-weight: 700;" data-en="Ready to help" data-es="Listo para ayudar">Ready to help</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button class="ai-header-action" id="aiResetChatBtn" title="New Conversation"><i class="fa-solid fa-rotate-right"></i></button>
+                    <button class="ai-header-action" id="aiCloseChatBtn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="ai-msg bot">
+                    <p data-en="Hello! I am FIA’O AI Assistant. How can I help you today with your credits, customers, or products?" data-es="¡Hola! Soy el asistente de IA de FIA’O. ¿Cómo puedo ayudarte hoy con tus créditos, clientes o productos?">Hello! I am FIA’O AI Assistant. How can I help you today with your credits, customers, or products?</p>
+                </div>
+            </div>
+
+            <div class="ai-chat-input-area">
+                <input type="text" id="aiChatInput" placeholder="Ask anything about FIA'O..." data-en-placeholder="Ask anything about FIA'O..." data-es-placeholder="Pregunta cualquier cosa sobre FIA'O...">
+                <button id="aiChatSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="asset/js/contacto.js"></script>
+</body>
+</html>

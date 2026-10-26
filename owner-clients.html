@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIA'O - Clients Management</title>
+    <link rel="stylesheet" href="asset/css/owner-clients.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="bg-shape-top"></div>
+    <div class="bg-shape-bottom"></div>
+
+    <!-- Navbar corporativo original -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <div class="nav-logo">FIA<span>'</span>O</div>
+            <nav class="nav-menu">
+                <a href="owner-dashboard.html" class="nav-link" data-en="Dashboard" data-es="Panel">Dashboard</a>
+                <a href="owner-credits.html" class="nav-link" data-en="Credits" data-es="Créditos">Credits</a>
+                <a href="owner-clients.html" class="nav-link active" data-en="Clients" data-es="Clientes">Clients</a>
+                <a href="owner-products.html" class="nav-link" data-en="Products" data-es="Productos">Products</a>
+                <a href="owner-reports.html" class="nav-link" data-en="Reports" data-es="Reportes">Reports</a>
+            </nav>
+            <div class="nav-right-actions">
+                <button id="lang-btn" class="action-pill-btn">ES</button>
+                <button id="theme-btn" class="action-pill-btn">Theme</button>
+                
+                <div class="profile-menu-container">
+                    <div class="profile-avatar-btn" id="profileToggle">
+                        <span id="userInitials">BO</span>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fa-regular fa-user"></i> <span data-en="My Profile" data-es="Mi Perfil">My Profile</span>
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fa-solid fa-gear"></i> <span data-en="Settings" data-es="Ajustes">Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="login.html" class="dropdown-item logout" id="logoutBtn">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> <span data-en="Log Out" data-es="Cerrar Sesión">Log Out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <!-- Encabezado de la Sección -->
+        <div class="credits-header-section">
+            <div class="title-wrap">
+                <h1 data-en="Clients Directory" data-es="Directorio de Clientes">Clients Directory</h1>
+                <p data-en="Manage customer accounts, credit limits, debt status, and payment reminders." data-es="Administra cuentas de clientes, límites de crédito, deudas y recordatorios de pago.">Manage customer accounts, credit limits, debt status, and payment reminders.</p>
+            </div>
+            <button class="btn-primary-fiao" id="openAddClientModal">
+                <i class="fa-solid fa-user-plus"></i> <span data-en="Add Client" data-es="Agregar Cliente">Add Client</span>
+            </button>
+        </div>
+
+        <!-- Tarjetas Estadísticas -->
+        <div class="financial-grid">
+            <div class="financial-card">
+                <div class="card-icon red"><i class="fa-solid fa-users"></i></div>
+                <div class="card-info">
+                    <span class="card-label" data-en="Total Clients" data-es="Total Clientes">Total Clients</span>
+                    <h2 class="card-value" id="statTotalClients">0</h2>
+                    <span class="card-trend neutral" data-en="Active accounts" data-es="Cuentas activas">Active accounts</span>
+                </div>
+            </div>
+            <div class="financial-card">
+                <div class="card-icon green"><i class="fa-solid fa-wallet"></i></div>
+                <div class="card-info">
+                    <span class="card-label" data-en="Active Credits" data-es="Créditos Activos">Active Credits</span>
+                    <h2 class="card-value" id="statActiveCredits">0</h2>
+                    <span class="card-trend positive" data-en="With current balance" data-es="Con saldo actual">With current balance</span>
+                </div>
+            </div>
+            <div class="financial-card">
+                <div class="card-icon yellow"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <div class="card-info">
+                    <span class="card-label" data-en="Outstanding Debt" data-es="Deuda Pendiente">Outstanding Debt</span>
+                    <h2 class="card-value" id="statOutstandingDebt">B/. 0.00</h2>
+                    <span class="card-trend negative" data-en="Total store debt" data-es="Deuda total en tienda">Total store debt</span>
+                </div>
+            </div>
+            <div class="financial-card">
+                <div class="card-icon dark"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="card-info">
+                    <span class="card-label" data-en="At Credit Limit" data-es="Al Límite de Crédito">At Credit Limit</span>
+                    <h2 class="card-value" id="statAtLimit">0</h2>
+                    <span class="card-trend negative" data-en="Require attention" data-es="Requieren atención">Require attention</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles de Búsqueda y Filtros -->
+        <div class="card-container inventory-controls-card" style="margin-bottom: 25px;">
+            <div class="search-sort-row">
+                <div class="search-box-wrap" style="flex: 1; max-width: 350px;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="clientSearch" placeholder="Search by name, phone, email..." data-en-placeholder="Search by name, phone, email..." data-es-placeholder="Buscar por nombre, teléfono, correo...">
+                </div>
+
+                <div class="filters-group-right">
+                    <select id="clientFilterStatus" class="fiao-select">
+                        <option value="all" data-en="All Clients" data-es="Todos los Clientes">All Clients</option>
+                        <option value="nodebt" data-en="No Debt" data-es="Sin Deuda">No Debt</option>
+                        <option value="debt" data-en="Outstanding Debt" data-es="Con Deuda">Outstanding Debt</option>
+                        <option value="nearlimit" data-en="Near Credit Limit" data-es="Cerca del Límite">Near Credit Limit</option>
+                        <option value="overdue" data-en="Overdue" data-es="Vencidos">Overdue</option>
+                    </select>
+
+                    <select id="clientSortSelect" class="fiao-select">
+                        <option value="name" data-en="Sort by Name" data-es="Ordenar por Nombre">Sort by Name</option>
+                        <option value="debt-desc" data-en="Debt: High to Low" data-es="Deuda: Mayor a Menor">Debt: High to Low</option>
+                        <option value="debt-asc" data-en="Debt: Low to High" data-es="Deuda: Menor a Mayor">Debt: Low to High</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Directorio de Clientes (Grid Cards) -->
+        <div class="clients-grid-container" id="clientsGridContainer"></div>
+    </main>
+
+    <!-- MODAL: Add / Edit Client -->
+    <div class="modal-backdrop" id="clientModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeClientModal">&times;</button>
+            <h2 id="clientModalTitle" data-en="Add New Client" data-es="Agregar Nuevo Cliente">Add New Client</h2>
+            <p data-en="Register customer details and credit rules." data-es="Registra datos del cliente y reglas de crédito.">Register customer details and credit rules.</p>
+            
+            <form id="clientForm">
+                <input type="hidden" id="editClientId">
+                <div class="input-group">
+                    <label data-en="Full Name" data-es="Nombre Completo">Full Name</label>
+                    <input type="text" id="clientName" placeholder="e.g. Carlos Pérez" required>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label data-en="Phone Number" data-es="Número de Teléfono">Phone Number</label>
+                        <input type="text" id="clientPhone" placeholder="+507 6000-0000" required>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Email Address (Optional)" data-es="Correo Electrónico (Opcional)">Email Address (Optional)</label>
+                        <input type="email" id="clientEmail" placeholder="client@example.com">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label data-en="Credit Limit (B/.)" data-es="Límite de Crédito (B/.)">Credit Limit (B/.)</label>
+                        <input type="number" id="clientLimit" step="0.01" min="0" placeholder="30.00" required>
+                    </div>
+                    <div class="input-group" style="display: flex; flex-direction: column; justify-content: flex-end;">
+                        <label data-en="Automatic Blocking" data-es="Bloqueo Automático">Automatic Blocking</label>
+                        <div style="display: flex; align-items: center; gap: 8px; height: 42px;">
+                            <label class="switch">
+                                <input type="checkbox" id="clientAutoBlock" checked>
+                                <span class="slider round"></span>
+                            </label>
+                            <span style="font-size: 12px; color: var(--subtext);" data-en="Active" data-es="Activo">Active</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label data-en="Notes (Optional)" data-es="Notas (Opcional)">Notes (Optional)</label>
+                    <textarea id="clientNotes" placeholder="Additional info..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary-fiao full-width" data-en="Save Client" data-es="Guardar Cliente">Save Client</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Customer Details & History -->
+    <div class="modal-backdrop" id="clientDetailsModal">
+        <div class="modal-card" style="max-width: 700px;">
+            <button class="modal-close" id="closeDetailsModal">&times;</button>
+            <div id="clientDetailsContent"></div>
+        </div>
+    </div>
+
+    <!-- MODAL: Payment Reminder (WhatsApp / Email) -->
+    <div class="modal-backdrop" id="reminderModal">
+        <div class="modal-card" style="max-width: 500px;">
+            <button class="modal-close" id="closeReminderModal">&times;</button>
+            <h2><i class="fa-solid fa-bell" style="color: var(--golden-yellow);"></i> <span data-en="Send Payment Reminder" data-es="Enviar Recordatorio de Pago">Send Payment Reminder</span></h2>
+            <p data-en="Customize and send payment reminder to customer." data-es="Personaliza y envía recordatorio de pago al cliente.">Customize and send payment reminder to customer.</p>
+            
+            <div class="input-group">
+                <label data-en="Reminder Channel" data-es="Canal de Recordatorio">Reminder Channel</label>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <button type="button" class="filter-btn active" id="channelWhatsAppBtn"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+                    <button type="button" class="filter-btn" id="channelEmailBtn"><i class="fa-solid fa-envelope"></i> Email</button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label data-en="Editable Message" data-es="Mensaje Editable">Editable Message</label>
+                <textarea id="reminderMessageText" rows="6" style="font-size: 13px; line-height: 1.4;"></textarea>
+            </div>
+
+            <div id="reminderContactInfo" style="font-size: 12px; color: var(--subtext); margin-bottom: 15px;"></div>
+
+            <div style="display: flex; gap: 10px;">
+                <button type="button" class="btn-secondary-fiao full-width" id="cancelReminderBtn" data-en="Cancel" data-es="Cancelar">Cancel</button>
+                <button type="button" class="btn-primary-fiao full-width" id="confirmSendReminderBtn" data-en="Proceed to Send" data-es="Proceder a Enviar">Proceed to Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="asset/js/owner-clients.js"></script>
+</body>
+</html>

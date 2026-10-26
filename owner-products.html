@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIA'O - Products & Inventory</title>
+    <link rel="stylesheet" href="asset/css/owner-products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="bg-shape-top"></div>
+    <div class="bg-shape-bottom"></div>
+
+    <!-- Navbar corporativo original -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <div class="nav-logo">FIA<span>'</span>O</div>
+            <nav class="nav-menu">
+                <a href="owner-dashboard.html" class="nav-link" data-en="Dashboard" data-es="Panel">Dashboard</a>
+                <a href="owner-credits.html" class="nav-link" data-en="Credits" data-es="Créditos">Credits</a>
+                <a href="owner-clients.html" class="nav-link" data-en="Clients" data-es="Clientes">Clients</a>
+                <a href="owner-products.html" class="nav-link active" data-en="Products" data-es="Productos">Products</a>
+                <a href="owner-reports.html" class="nav-link" data-en="Reports" data-es="Reportes">Reports</a>
+            </nav>
+            <div class="nav-right-actions">
+                <button id="lang-btn" class="action-pill-btn">ES</button>
+                <button id="theme-btn" class="action-pill-btn">Theme</button>
+                
+                <div class="profile-menu-container">
+                    <div class="profile-avatar-btn" id="profileToggle">
+                        <span id="userInitials">BO</span>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fa-regular fa-user"></i> <span data-en="My Profile" data-es="Mi Perfil">My Profile</span>
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fa-solid fa-gear"></i> <span data-en="Settings" data-es="Ajustes">Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="login.html" class="dropdown-item logout" id="logoutBtn">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> <span data-en="Log Out" data-es="Cerrar Sesión">Log Out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <!-- Pestañas Internas del Módulo Products -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="inventory" data-en="Inventory" data-es="Inventario">Inventory</button>
+            <button class="tab-btn" data-tab="sale" data-en="Register Fiado Sale" data-es="Registrar Venta Fiada">Register Fiado Sale</button>
+            <button class="tab-btn" data-tab="movements" data-en="Stock Movements" data-es="Movimientos de Stock">Stock Movements</button>
+        </div>
+
+        <!-- TAB 1: INVENTORY -->
+        <div class="tab-content active" id="tab-inventory">
+            <div class="credits-header-section">
+                <div class="title-wrap">
+                    <h1 data-en="Product Inventory" data-es="Inventario de Productos">Product Inventory</h1>
+                    <p data-en="Visual inventory management, categories, and stock levels." data-es="Gestión visual de inventario, categorías y niveles de stock.">Visual inventory management, categories, and stock levels.</p>
+                </div>
+                <button class="btn-primary-fiao" id="openAddProductModal">
+                    <i class="fa-solid fa-plus"></i> <span data-en="Add Product" data-es="Agregar Producto">Add Product</span>
+                </button>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="financial-grid">
+                <div class="financial-card">
+                    <div class="card-icon red"><i class="fa-solid fa-box"></i></div>
+                    <div class="card-info">
+                        <span class="card-label" data-en="Total Products" data-es="Total Productos">Total Products</span>
+                        <h2 class="card-value" id="statTotalProducts">0</h2>
+                        <span class="card-trend neutral" data-en="Active items" data-es="Artículos activos">Active items</span>
+                    </div>
+                </div>
+                <div class="financial-card">
+                    <div class="card-icon yellow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="card-info">
+                        <span class="card-label" data-en="Low Stock" data-es="Stock Bajo">Low Stock</span>
+                        <h2 class="card-value" id="statLowStock">0</h2>
+                        <span class="card-trend negative" data-en="Needs restock" data-es="Requiere reabastecer">Needs restock</span>
+                    </div>
+                </div>
+                <div class="financial-card">
+                    <div class="card-icon red"><i class="fa-solid fa-ban"></i></div>
+                    <div class="card-info">
+                        <span class="card-label" data-en="Out of Stock" data-es="Sin Stock">Out of Stock</span>
+                        <h2 class="card-value" id="statOutOfStock">0</h2>
+                        <span class="card-trend negative" data-en="Zero inventory" data-es="Inventario en cero">Zero inventory</span>
+                    </div>
+                </div>
+                <div class="financial-card">
+                    <div class="card-icon green"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="card-info">
+                        <span class="card-label" data-en="Inventory Value" data-es="Valor del Inventario">Inventory Value</span>
+                        <h2 class="card-value" id="statInventoryValue">B/. 0.00</h2>
+                        <span class="card-trend positive" data-en="Total asset value" data-es="Valor total de activos">Total asset value</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtros, Buscador y Selector de Vista (Grid / List) -->
+            <div class="card-container inventory-controls-card">
+                <div class="search-sort-row">
+                    <div class="search-box-wrap" style="flex: 1; max-width: 320px;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="inventorySearch" placeholder="Search product by name, SKU..." data-en-placeholder="Search product by name, SKU..." data-es-placeholder="Buscar producto por nombre, SKU...">
+                    </div>
+                    
+                    <div class="filters-group-right">
+                        <select id="statusFilter" class="fiao-select">
+                            <option value="all" data-en="All Status" data-es="Todos los Estados">All Status</option>
+                            <option value="instock" data-en="In Stock" data-es="En Stock">In Stock</option>
+                            <option value="lowstock" data-en="Low Stock" data-es="Stock Bajo">Low Stock</option>
+                            <option value="outofstock" data-en="Out of Stock" data-es="Sin Stock">Out of Stock</option>
+                        </select>
+
+                        <select id="sortSelect" class="fiao-select">
+                            <option value="name" data-en="Sort by Name" data-es="Ordenar por Nombre">Sort by Name</option>
+                            <option value="price-asc" data-en="Price: Low to High" data-es="Precio: Menor a Mayor">Price: Low to High</option>
+                            <option value="price-desc" data-en="Price: High to Low" data-es="Precio: Mayor a Menor">Price: High to Low</option>
+                            <option value="stock" data-en="Stock Level" data-es="Nivel de Stock">Stock Level</option>
+                        </select>
+
+                        <!-- Selector de Vista Grid / List -->
+                        <div class="view-mode-toggle">
+                            <button class="view-mode-btn active" id="gridViewBtn" title="Grid View"><i class="fa-solid fa-grip"></i></button>
+                            <button class="view-mode-btn" id="listViewBtn" title="List View"><i class="fa-solid fa-list"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categorías Interactivas (Píldoras horizontales con iconos) -->
+                <div class="categories-pills-container" id="categoriesPillsContainer">
+                    <button class="cat-pill active" data-category="All"><i class="fa-solid fa-border-all"></i> <span data-en="All Products" data-es="Todos">All Products</span></button>
+                    <button class="cat-pill" data-category="Pantry"><i class="fa-solid fa-wheat-awn"></i> Pantry</button>
+                    <button class="cat-pill" data-category="Beverages"><i class="fa-solid fa-bottle-water"></i> Beverages</button>
+                    <button class="cat-pill" data-category="Dairy & Eggs"><i class="fa-solid fa-cow"></i> Dairy & Eggs</button>
+                    <button class="cat-pill" data-category="Bakery"><i class="fa-solid fa-bread-slice"></i> Bakery</button>
+                    <button class="cat-pill" data-category="Meat & Seafood"><i class="fa-solid fa-fish"></i> Meat & Seafood</button>
+                    <button class="cat-pill" data-category="Fruits & Vegetables"><i class="fa-solid fa-carrot"></i> Fruits & Veg</button>
+                    <button class="cat-pill" data-category="Snacks & Candy"><i class="fa-solid fa-cookie"></i> Snacks & Candy</button>
+                    <button class="cat-pill" data-category="Frozen Foods"><i class="fa-solid fa-snowflake"></i> Frozen Foods</button>
+                    <button class="cat-pill" data-category="Cleaning Products"><i class="fa-solid fa-pump-soap"></i> Cleaning</button>
+                    <button class="cat-pill" data-category="Personal Care"><i class="fa-solid fa-soap"></i> Personal Care</button>
+                    <button class="cat-pill" data-category="Baby Products"><i class="fa-solid fa-baby-carriage"></i> Baby</button>
+                    <button class="cat-pill" data-category="Pet Supplies"><i class="fa-solid fa-paw"></i> Pet Supplies</button>
+                    <button class="cat-pill" data-category="Household Items"><i class="fa-solid fa-house"></i> Household</button>
+                    <button class="cat-pill" data-category="School Supplies"><i class="fa-solid fa-pencil"></i> School</button>
+                    <button class="cat-pill" data-category="Other"><i class="fa-solid fa-box-archive"></i> Other</button>
+                </div>
+            </div>
+
+            <!-- Contenedor Dinámico: Grid View (Tarjetas) o List View (Tabla) -->
+            <div id="inventoryDisplayArea">
+                <!-- Grid View por defecto -->
+                <div class="products-grid-container" id="productsGrid"></div>
+                
+                <!-- List View (Oculto inicialmente) -->
+                <div class="products-table-container" id="productsTableContainer" style="display: none;">
+                    <table class="fiao-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Image" data-es="Imagen">Image</th>
+                                <th data-en="Product Name" data-es="Nombre">Product Name</th>
+                                <th data-en="Category" data-es="Categoría">Category</th>
+                                <th data-en="Price" data-es="Precio">Price</th>
+                                <th data-en="Stock" data-es="Stock">Stock</th>
+                                <th data-en="Unit" data-es="Unidad">Unit</th>
+                                <th data-en="Status" data-es="Estado">Status</th>
+                                <th data-en="Actions" data-es="Acciones">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: REGISTER FIADO SALE -->
+        <div class="tab-content" id="tab-sale">
+            <div class="credits-header-section">
+                <div class="title-wrap">
+                    <h1 data-en="Register Fiado Sale" data-es="Registrar Venta Fiada">Register Fiado Sale</h1>
+                    <p data-en="Assign credit sales using inventory items or manual products." data-es="Asigna ventas a crédito usando inventario o productos manuales.">Assign credit sales using inventory items or manual products.</p>
+                </div>
+            </div>
+
+            <div class="control-panel-grid" style="grid-template-columns: 1fr 380px;">
+                <div class="card-container">
+                    <h3 data-en="Add Products to Sale" data-es="Agregar Productos a la Venta" style="margin-bottom: 15px;">Add Products to Sale</h3>
+                    
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid var(--gray-border); padding-bottom: 15px;">
+                        <button class="filter-btn active" id="modeInventoryBtn" data-en="From Inventory" data-es="Del Inventario">From Inventory</button>
+                        <button class="filter-btn" id="modeManualBtn" data-en="Manual Product" data-es="Producto Manual">Manual Product</button>
+                    </div>
+
+                    <!-- Modo Inventario -->
+                    <div id="formModeInventory">
+                        <div class="input-group">
+                            <label data-en="Select Product" data-es="Seleccionar Producto">Select Product</label>
+                            <select id="saleProductSelect">
+                                <option value="">-- Choose product --</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label data-en="Quantity" data-es="Cantidad">Quantity</label>
+                                <input type="number" id="saleQty" min="1" value="1">
+                            </div>
+                            <div class="input-group" style="display: flex; align-items: flex-end;">
+                                <button type="button" class="btn-primary-fiao full-width" id="addTocartInvBtn" data-en="Add to Cart" data-es="Agregar al Carrito">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modo Manual -->
+                    <div id="formModeManual" style="display: none;">
+                        <div class="input-group">
+                            <label data-en="Product Name / Description" data-es="Nombre / Descripción del Producto">Product Name / Description</label>
+                            <input type="text" id="manualProdName" placeholder="e.g. Special Delivery Service">
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label data-en="Quantity" data-es="Cantidad">Quantity</label>
+                                <input type="number" id="manualProdQty" min="1" value="1">
+                            </div>
+                            <div class="input-group">
+                                <label data-en="Unit Price (B/.)" data-es="Precio Unitario (B/.)">Unit Price (B/.)</label>
+                                <input type="number" id="manualProdPrice" step="0.01" min="0.01" placeholder="0.00">
+                            </div>
+                        </div>
+                        <button type="button" class="btn-primary-fiao full-width" id="addTocartManualBtn" data-en="Add Manual Item" data-es="Agregar Artículo Manual">Add Manual Item</button>
+                    </div>
+
+                    <hr style="border:0; border-top:1px solid var(--gray-border); margin: 20px 0;">
+
+                    <!-- Carrito con Miniaturas -->
+                    <h3 data-en="Cart Items" data-es="Artículos en Carrito" style="margin-bottom: 12px; font-size:14px;">Cart Items</h3>
+                    <div id="cartItemsContainer" style="max-height: 220px; overflow-y: auto; margin-bottom: 15px;">
+                        <div style="font-size:12px; color:var(--subtext); text-align:center; padding:15px;" data-en="Cart is empty" data-es="El carrito está vacío">Cart is empty</div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 800; padding-top: 10px; border-top: 2px solid var(--gray-border);">
+                        <span data-en="Total Amount:" data-es="Monto Total:">Total Amount:</span>
+                        <span id="cartTotalDisplay" style="color: var(--primary-red);">B/. 0.00</span>
+                    </div>
+                </div>
+
+                <!-- Selección de Cliente y Confirmación -->
+                <div class="card-container">
+                    <h3 data-en="Customer & Credit" data-es="Cliente y Crédito" style="margin-bottom: 15px;">Customer & Credit</h3>
+                    <div class="input-group">
+                        <label data-en="Select Customer" data-es="Seleccionar Cliente">Select Customer</label>
+                        <select id="saleCustomerSelect" required>
+                            <option value="">-- Choose customer --</option>
+                        </select>
+                    </div>
+
+                    <div class="selected-customer-details" id="saleCustomerDetails" style="margin-bottom: 20px;">
+                        <div class="empty-selection-msg" data-en="Select a customer to verify credit limit." data-es="Selecciona un cliente para verificar límite de crédito.">
+                            Select a customer to verify credit limit.
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-primary-fiao full-width" id="confirmFiadoSaleBtn" data-en="Confirm Fiado Sale" data-es="Confirmar Venta Fiada" style="padding: 12px; font-size: 14px;">
+                        Confirm Fiado Sale
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: STOCK MOVEMENTS -->
+        <div class="tab-content" id="tab-movements">
+            <div class="credits-header-section">
+                <div class="title-wrap">
+                    <h1 data-en="Stock Movements" data-es="Movimientos de Stock">Stock Movements</h1>
+                    <p data-en="Audit trail of inventory entries, exits, adjustments, and sales." data-es="Historial de auditoría de entradas, salidas, ajustes y ventas.">Audit trail of inventory entries, exits, adjustments, and sales.</p>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="table-responsive">
+                    <table class="fiao-table">
+                        <thead>
+                            <tr>
+                                <th data-en="Date & Time" data-es="Fecha y Hora">Date & Time</th>
+                                <th data-en="Product" data-es="Producto">Product</th>
+                                <th data-en="Type" data-es="Tipo">Type</th>
+                                <th data-en="Quantity" data-es="Cantidad">Quantity</th>
+                                <th data-en="Previous Stock" data-es="Stock Anterior">Previous Stock</th>
+                                <th data-en="New Stock" data-es="Nuevo Stock">New Stock</th>
+                                <th data-en="Reference / Reason" data-es="Referencia / Motivo">Reference / Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody id="movementsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL: Add / Edit Product con Carga de Imagen -->
+    <div class="modal-backdrop" id="productModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeProductModal">&times;</button>
+            <h2 id="productModalTitle" data-en="Add New Product" data-es="Agregar Nuevo Producto">Add New Product</h2>
+            <p data-en="Configure product details, photo, pricing, and stock." data-es="Configura detalles, fotografía, precios y stock.">Configure product details, photo, pricing, and stock.</p>
+            
+            <form id="productForm">
+                <input type="hidden" id="editProductId">
+                
+                <!-- Zona de Fotografía del Producto -->
+                <div class="input-group">
+                    <label data-en="Product Image" data-es="Imagen del Producto">Product Image</label>
+                    <div class="image-upload-preview-container">
+                        <div class="img-preview-box" id="imgPreviewBox">
+                            <i class="fa-solid fa-image"></i>
+                        </div>
+                        <div class="img-upload-controls">
+                            <input type="file" id="prodImageFile" accept="image/*" style="display: none;">
+                            <button type="button" class="table-action-btn" id="selectImgBtn" data-en="Choose Image" data-es="Elegir Imagen">Choose Image</button>
+                            <button type="button" class="table-action-btn" id="removeImgBtn" style="color:var(--red-accent);" data-en="Remove" data-es="Quitar">Remove</button>
+                            <small style="color:var(--subtext); display:block; margin-top:4px;" data-en="Local path: asset/img/products/" data-es="Ruta local: asset/img/products/">Local path: asset/img/products/</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label data-en="Product Name" data-es="Nombre del Producto">Product Name</label>
+                    <input type="text" id="prodName" placeholder="e.g. Organic Apples" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label data-en="Category" data-es="Categoría">Category</label>
+                        <select id="prodCategory" required>
+                            <option value="Pantry">Pantry</option>
+                            <option value="Beverages">Beverages</option>
+                            <option value="Dairy & Eggs">Dairy & Eggs</option>
+                            <option value="Bakery">Bakery</option>
+                            <option value="Meat & Seafood">Meat & Seafood</option>
+                            <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                            <option value="Snacks & Candy">Snacks & Candy</option>
+                            <option value="Frozen Foods">Frozen Foods</option>
+                            <option value="Cleaning Products">Cleaning Products</option>
+                            <option value="Personal Care">Personal Care</option>
+                            <option value="Baby Products">Baby Products</option>
+                            <option value="Pet Supplies">Pet Supplies</option>
+                            <option value="Household Items">Household Items</option>
+                            <option value="School Supplies">School Supplies</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="SKU / Code (Optional)" data-es="SKU / Código (Opcional)">SKU / Code (Optional)</label>
+                        <input type="text" id="prodSku" placeholder="PRD-001">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label data-en="Selling Price (B/.)" data-es="Precio de Venta (B/.)">Selling Price (B/.)</label>
+                        <input type="number" id="prodPrice" step="0.01" min="0.01" placeholder="0.00" required>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Initial Stock" data-es="Stock Inicial">Initial Stock</label>
+                        <input type="number" id="prodStock" min="0" value="10" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label data-en="Unit of Measurement" data-es="Unidad de Medida">Unit of Measurement</label>
+                        <select id="prodUnit">
+                            <option value="Unit">Unit</option>
+                            <option value="lb">lb</option>
+                            <option value="kg">kg</option>
+                            <option value="Pack">Pack</option>
+                            <option value="Bottle">Bottle</option>
+                            <option value="Box">Box</option>
+                            <option value="Dozen">Dozen</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label data-en="Min Stock Alert" data-es="Alerta Stock Mínimo">Min Stock Alert</label>
+                        <input type="number" id="prodMinStock" min="0" value="3" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label data-en="Description (Optional)" data-es="Descripción (Opcional)">Description (Optional)</label>
+                    <textarea id="prodDesc" placeholder="Product details..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary-fiao full-width" data-en="Save Product" data-es="Guardar Producto">Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Product Details / Quick View -->
+    <div class="modal-backdrop" id="productDetailsModal">
+        <div class="modal-card" style="max-width: 400px; text-align: center;">
+            <button class="modal-close" id="closeDetailsModal">&times;</button>
+            <div id="detailsModalContent"></div>
+        </div>
+    </div>
+
+    <script src="asset/js/owner-products.js"></script>
+</body>
+</html>

@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!localStorage.getItem('fia_credits')) {
         const initialCredits = [
-            { id: 101, customerId: 1, customerName: 'Carlos Pérez', description: '1 Sack of Rice & Oil', originalAmount: 20.00, paidAmount: 0.00, balance: 20.00, date: '2026-10-20', dueDate: '2026-11-20', status: 'pending' },
-            { id: 102, customerId: 2, customerName: 'María Gómez', description: 'Canned goods & Soda pack', originalAmount: 32.50, paidAmount: 20.00, balance: 12.50, date: '2026-10-15', dueDate: '2026-10-30', status: 'partial' },
+            { id: 101, customerId: 1, customerName: 'Carlos Pérez', description: '1 Sack of Rice & Oil', originalAmount: 20.00, paidAmount: 0.00, balance: 20.00, date: '2026-10-20', dueDate: '2026-10-25', status: 'overdue' },
+            { id: 102, customerId: 2, customerName: 'María Gómez', description: 'Canned goods & Soda pack', originalAmount: 32.50, paidAmount: 20.00, balance: 12.50, date: '2026-10-15', dueDate: '2026-11-30', status: 'partial' },
             { id: 103, customerId: 3, customerName: 'Ramón Batista', description: 'Cleaning supplies', originalAmount: 15.00, paidAmount: 15.00, balance: 0.00, date: '2026-10-10', dueDate: '2026-10-25', status: 'paid' }
         ];
         localStorage.setItem('fia_credits', JSON.stringify(initialCredits));
@@ -103,16 +103,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalDebt = 0;
         let withDebtCount = 0;
         let overdueCount = 0;
-        let paymentsTodayTotal = 35.00; // Simulado inicial
+        let paymentsTodayTotal = 35.00;
 
         customers.forEach(c => {
             if (c.currentDebt > 0) withDebtCount++;
         });
 
+        const now = new Date();
         credits.forEach(cr => {
             if (cr.status !== 'paid') totalDebt += cr.balance;
-            if (cr.status === 'overdue' || (cr.dueDate && new Date(cr.dueDate) < new Date() && cr.balance > 0)) {
+            if (cr.balance > 0 && cr.dueDate && new Date(cr.dueDate) < now) {
                 overdueCount++;
+                cr.status = 'overdue';
             }
         });
 
@@ -417,6 +419,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setCustomers(customers);
 
         let credits = getCredits();
+        const now = new Date();
+        const isOverdue = dueDate && new Date(dueDate) < now;
+
         const newCr = {
             id: Date.now(),
             customerId: cust.id,
@@ -426,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
             paidAmount: 0.00,
             balance: total,
             date, dueDate,
-            status: 'pending'
+            status: isOverdue ? 'overdue' : 'pending'
         };
         credits.push(newCr);
         setCredits(credits);
@@ -473,7 +478,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cr.balance === 0) {
             cr.status = 'paid';
         } else {
-            cr.status = 'partial';
+            const now = new Date();
+            cr.status = (cr.dueDate && new Date(cr.dueDate) < now) ? 'overdue' : 'partial';
         }
         setCredits(credits);
 
@@ -498,13 +504,11 @@ document.addEventListener('DOMContentLoaded', () => {
         processPayment(payAmt);
     });
 
-    // Botón de Marcar como Pagado por Completo
     markFullPaidBtn.addEventListener('click', () => {
         const credId = parseInt(document.getElementById('payCreditId').value);
         const credits = getCredits();
         const cr = credits.find(x => x.id === credId);
         if (!cr) return;
-        // Paga exactamente lo que resta del saldo pendiente
         processPayment(cr.balance);
     });
 
