@@ -162,20 +162,22 @@ body {
 }
 
 .brand-logo-box {
-    background-color: var(--white);
-    padding: 8px 22px;
-    border-radius: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    margin-bottom: 20px;
+    background-color: transparent !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 20px; /* Acerca más el logo hacia la tarjeta del formulario */
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 
 .brand-image-placeholder {
-    height: 32px;
+    height: 100px;
     object-fit: contain;
 }
+
 
 .register-card {
     background-color: var(--white);
