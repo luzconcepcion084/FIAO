@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIA'O - My Profile</title>
+    <link rel="stylesheet" href="asset/css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="bg-shape-top"></div>
+    <div class="bg-shape-bottom"></div>
+
+    <!-- Barra de Navegación -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <div class="nav-logo">FIA<span>'</span>O</div>
+            <nav class="nav-menu">
+                <a href="owner-dashboard.html" class="nav-link" data-en="Dashboard" data-es="Panel">Dashboard</a>
+                <a href="index.html" class="active" data-en="Home" data-es="Inicio">Home</a>
+                <a href="owner-credits.html" class="nav-link" data-en="Credits" data-es="Créditos">Credits</a>
+                <a href="owner-clients.html" class="nav-link" data-en="Clients" data-es="Clientes">Clients</a>
+                <a href="owner-products.html" class="nav-link" data-en="Products" data-es="Productos">Products</a>
+                <a href="owner-reports.html" class="nav-link" data-en="Reports" data-es="Reportes">Reports</a>
+                <a href="contacto.html" class="nav-link" data-en="Support" data-es="Soporte">Support</a>
+            </nav>
+            <div class="nav-right-actions">
+                <button id="lang-btn" class="action-pill-btn">ES</button>
+                <button id="theme-btn" class="action-pill-btn">Theme</button>
+                
+                <div class="profile-menu-container">
+                    <div class="profile-avatar-btn active" id="profileToggle">
+                        <span id="userInitials">LC</span>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="profile.html" class="dropdown-item active">
+                            <i class="fa-regular fa-user"></i> <span data-en="My Profile" data-es="Mi Perfil">My Profile</span>
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fa-solid fa-gear"></i> <span data-en="Settings" data-es="Ajustes">Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="login.html" class="dropdown-item logout" id="logoutBtn">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> <span data-en="Log Out" data-es="Cerrar Sesión">Log Out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <!-- Encabezado de la Sección -->
+        <div class="credits-header-section">
+            <div class="title-wrap">
+                <h1 data-en="My Profile" data-es="Mi Perfil">My Profile</h1>
+                <p data-en="Manage your personal information and account settings." data-es="Administra tu información personal y los ajustes de tu cuenta.">Manage your personal information and account settings.</p>
+            </div>
+        </div>
+
+        <!-- Contenedor Principal del Perfil -->
+        <div class="profile-grid-layout">
+            
+            <!-- Tarjeta de Identidad y Avatar con Carga de Foto -->
+            <div class="card-container profile-card-center">
+                <div class="profile-avatar-large" id="profileAvatarContainer">
+                    <span id="largeInitials">LC</span>
+                    <img id="profileImagePreview" src="" alt="Profile Photo" style="display: none;">
+                </div>
+
+                <!-- Botón oculto para subir archivo y botón visual -->
+                <input type="file" id="profilePhotoInput" accept="image/*" style="display: none;">
+                <button type="button" class="btn-secondary-fiao" id="uploadPhotoBtn" style="margin-bottom: 12px; font-size: 11px; padding: 6px 14px;">
+                    <i class="fa-solid fa-camera"></i> <span data-en="Change Photo" data-es="Cambiar Foto">Change Photo</span>
+                </button>
+                <button type="button" class="remove-photo-btn" id="removePhotoBtn" style="display: none;" data-en="Remove Photo" data-es="Eliminar Foto">Eliminar Foto</button>
+
+                <h2 id="profileDisplayName" style="margin-top: 10px;">Luz Concepción</h2>
+                <p class="profile-role-badge" data-en="Business Owner" data-es="Dueño de Negocio">Business Owner</p>
+                <p class="profile-store-name"><i class="fa-solid fa-store"></i> <span id="profileStoreNameText">Minisúper El Ahorro</span></p>
+
+                <div class="profile-quick-stats">
+                    <div class="p-stat-item">
+                        <span class="p-num">124</span>
+                        <span class="p-lbl" data-en="Clients" data-es="Clientes">Clients</span>
+                    </div>
+                    <div class="p-stat-item">
+                        <span class="p-num">45</span>
+                        <span class="p-lbl" data-en="Active Credits" data-es="Créditos Activos">Active Credits</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de Edición de Datos -->
+            <div class="card-container">
+                <h3 style="margin-bottom: 5px;" data-en="Personal Information" data-es="Información Personal">Personal Information</h3>
+                <p style="font-size: 12px; color: var(--subtext); margin-bottom: 20px;" data-en="Update your profile details below." data-es="Actualiza los detalles de tu perfil a continuación.">Update your profile details below.</p>
+                
+                <form id="profileUpdateForm">
+                    <div class="input-group">
+                        <label data-en="Full Name" data-es="Nombre Completo">Full Name</label>
+                        <input type="text" id="profFullName" value="Luz Concepción" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
+                        <input type="email" id="profEmail" value="luz.concepcion@fiao-app.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label data-en="Phone Number" data-es="Número de Teléfono">Phone Number</label>
+                        <input type="tel" id="profPhone" value="+507 6000-0000">
+                    </div>
+
+                    <div class="input-group">
+                        <label data-en="Business / Store Name" data-es="Nombre del Negocio / Tienda">Business / Store Name</label>
+                        <input type="text" id="profStoreName" value="Minisúper El Ahorro">
+                    </div>
+
+                    <div class="input-group">
+                        <label data-en="Business Code (ID)" data-es="Código de Negocio (ID)">Business Code (ID)</label>
+                        <input type="text" id="profStoreCode" value="FIAO-8821" readonly style="background: rgba(0,0,0,0.03); cursor: not-allowed;">
+                    </div>
+
+                    <button type="submit" class="btn-primary-fiao full-width" id="saveProfileBtn" data-en="Save Changes" data-es="Guardar Cambios">Save Changes</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Moderno -->
+    <footer class="fiao-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="nav-logo">FIA<span>'</span>O</div>
+                <p data-en="Digital notebook and credit management for modern businesses." data-es="Cuaderno digital y gestión de créditos para negocios modernos.">Digital notebook and credit management for modern businesses.</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-en="Navigation" data-es="Navegación">Navigation</h4>
+                <a href="owner-dashboard.html" data-en="Dashboard" data-es="Panel">Dashboard</a>
+                <a href="owner-credits.html" data-en="Credits" data-es="Créditos">Credits</a>
+                <a href="owner-clients.html" data-en="Clients" data-es="Clientes">Clients</a>
+            </div>
+            <div class="footer-links">
+                <h4 data-en="Help & Support" data-es="Ayuda y Soporte">Help & Support</h4>
+                <a href="contacto.html" data-en="Help Center" data-es="Centro de Ayuda">Help Center</a>
+                <a href="contacto.html" data-en="Contact Us" data-es="Contáctanos">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 FIA'O. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script src="asset/js/profile.js"></script>
+</body>
+</html>
