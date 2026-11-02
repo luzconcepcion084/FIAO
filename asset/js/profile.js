@@ -1,190 +1,147 @@
-document.addEventListener('DOMContentLoaded', function() {
-    loadProfileData();
-});
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Cargar datos guardados si existen en localStorage
+    const savedName = localStorage.getItem('fiao_profile_name') || "Luz Concepción";
+    const savedEmail = localStorage.getItem('fiao_profile_email') || "luz.concepcion@fiao-app.com";
+    const savedPhone = localStorage.getItem('fiao_profile_phone') || "+507 6000-0000";
+    const savedStore = localStorage.getItem('fiao_profile_store') || "Minisúper El Ahorro";
+    const savedPhoto = localStorage.getItem('fiao_profile_photo');
 
-function loadProfileData() {
-    const fullName = localStorage.getItem('fiao_user_name') || 'Usuario';
-    const email = localStorage.getItem('fiao_user_email') || 'correo@fiao.com';
-    const phone = localStorage.getItem('fiao_user_phone') || '+507 0000-0000';
-    const userType = localStorage.getItem('fiao_user_type') || 'owner';
-    const businessName = localStorage.getItem('fiao_business_name') || fullName;
+    document.getElementById('profFullName').value = savedName;
+    document.getElementById('profEmail').value = savedEmail;
+    document.getElementById('profPhone').value = savedPhone;
+    document.getElementById('profStoreName').value = savedStore;
 
-    // 1. Configurar el saludo de bienvenida con el nombre de la persona
-    const welcomeTitle = document.getElementById('welcomeTitleDisplay') || document.getElementById('customerWelcomeTitle');
-    if (welcomeTitle) {
-        welcomeTitle.textContent = `Welcome back, ${fullName}!`;
-    }
+    document.getElementById('profileDisplayName').textContent = savedName;
+    document.getElementById('profileStoreNameText').textContent = savedStore;
 
-    // 2. Configurar la barra superior y el perfil según el rol
-    if (userType === 'owner') {
-        // Dueño: Arriba y en el perfil manda el nombre del negocio
-        const storeNameEl = document.getElementById('storeNameDisplay');
-        if (storeNameEl) storeNameEl.textContent = businessName;
-
-        const headerNameEl = document.getElementById('profileHeaderName');
-        if (headerNameEl) headerNameEl.textContent = businessName;
-
-        const bizSub = document.getElementById('profileHeaderSub');
-        if (bizSub) bizSub.textContent = `Dueño: ${fullName}`;
-
-        const bizInput = document.getElementById('profileBusinessName');
-        if (bizInput) bizInput.value = businessName;
-
-        // Iniciales basadas en el negocio
-        const initials = businessName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
-        const initialsEl = document.getElementById('storeInitials') || document.getElementById('profileHeaderInitials');
-        if (initialsEl) initialsEl.textContent = initials;
-        const headerInitials = document.getElementById('profileHeaderInitials');
-        if (headerInitials) headerInitials.textContent = initials;
-
-    } else {
-        // Cliente: Manda el nombre de la persona en todos lados
-        const customerNameEl = document.getElementById('customerNameDisplay');
-        if (customerNameEl) customerNameEl.textContent = fullName;
-
-        const headerNameEl = document.getElementById('profileHeaderName');
-        if (headerNameEl) headerNameEl.textContent = fullName;
-
-        const initials = fullName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
-        const initialsEl = document.getElementById('customerInitials');
-        if (initialsEl) initialsEl.textContent = initials;
-        const headerInitials = document.getElementById('profileHeaderInitials');
-        if (headerInitials) headerInitials.textContent = initials;
-    }
-
-    // 3. Rellenar campos personales comunes (Nombre, Correo, Teléfono)
-    const fullNameInput = document.getElementById('profileFullName');
-    if (fullNameInput) fullNameInput.value = fullName;
-
-    const emailInput = document.getElementById('profileEmail');
-    if (emailInput) emailInput.value = email;
-
-    const phoneInput = document.getElementById('profilePhone');
-    if (phoneInput) phoneInput.value = phone;
-}
-
-function switchDashboardView(viewName, event) {
-    if (event) event.preventDefault();
-    const overview = document.getElementById('overviewSection');
-    const profile = document.getElementById('profileSection');
-    
-    if (viewName === 'profile') {
-        if (overview) overview.style.display = 'none';
-        if (profile) profile.style.display = 'block';
-    } else {
-        if (profile) profile.style.display = 'none';
-        if (overview) overview.style.display = 'block';
-    }
-    const menu = document.getElementById('profileDropdown');
-    if (menu) menu.classList.remove('show');
-}
-
-function toggleProfileDropdown() {
-    const menu = document.getElementById('profileDropdown');
-    if (menu) menu.classList.toggle('show');
-}
-
-function toggleEditMode() {
-    const nameInput = document.getElementById('profileFullName');
-    const phoneInput = document.getElementById('profilePhone');
-    const bizInput = document.getElementById('profileBusinessName');
-    const actions = document.getElementById('personalEditActions');
-    const btn = document.getElementById('editProfileBtn');
-
-    if (nameInput) nameInput.disabled = false;
-    if (phoneInput) phoneInput.disabled = false;
-    if (bizInput) bizInput.disabled = false;
-    if (actions) actions.style.display = 'flex';
-    if (btn) btn.style.display = 'none';
-}
-
-function cancelEditMode() {
-    loadProfileData();
-    const nameInput = document.getElementById('profileFullName');
-    const phoneInput = document.getElementById('profilePhone');
-    const bizInput = document.getElementById('profileBusinessName');
-    
-    if (nameInput) nameInput.disabled = true;
-    if (phoneInput) phoneInput.disabled = true;
-    if (bizInput) bizInput.disabled = true;
-    
-    const actions = document.getElementById('personalEditActions');
-    const btn = document.getElementById('editProfileBtn');
-    if (actions) actions.style.display = 'none';
-    if (btn) btn.style.display = 'block';
-}
-
-function savePersonalChanges(event) {
-    event.preventDefault();
-    const nameInput = document.getElementById('profileFullName');
-    const phoneInput = document.getElementById('profilePhone');
-    const bizInput = document.getElementById('profileBusinessName');
-
-    if (nameInput && nameInput.value.trim()) {
-        localStorage.setItem('fiao_user_name', nameInput.value.trim());
-    }
-    if (phoneInput && phoneInput.value.trim()) {
-        localStorage.setItem('fiao_user_phone', phoneInput.value.trim());
-    }
-    if (bizInput && bizInput.value.trim()) {
-        localStorage.setItem('fiao_business_name', bizInput.value.trim());
-    }
-
-    loadProfileData();
-    cancelEditMode();
-    alert('¡Cambios guardados con éxito!');
-}
-
-function previewAvatar(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const container = document.getElementById('avatarPreviewContainer');
-            if (container) {
-                container.style.backgroundImage = `url(${e.target.result})`;
-                container.style.backgroundSize = 'cover';
-                container.style.backgroundPosition = 'center';
-            }
-            const initEl = document.getElementById('profileHeaderInitials');
-            if (initEl) initEl.style.display = 'none';
+    // Calcular iniciales
+    function updateInitials(name) {
+        const parts = name.trim().split(' ');
+        let initials = parts[0] ? parts[0][0] : 'L';
+        if (parts.length > 1) {
+            initials += parts[1][0];
         }
-        reader.readAsDataURL(file);
+        initials = initials.toUpperCase();
+        document.getElementById('userInitials').textContent = initials;
+        document.getElementById('largeInitials').textContent = initials;
     }
-}
+    updateInitials(savedName);
 
-function openPasswordModal() { 
-    const modal = document.getElementById('passwordModal');
-    if (modal) modal.style.display = 'flex'; 
-}
-function closePasswordModal() { 
-    const modal = document.getElementById('passwordModal');
-    if (modal) modal.style.display = 'none'; 
-}
-function submitPasswordChange() {
-    alert('[Simulación] Contraseña actualizada correctamente.');
-    closePasswordModal();
-}
+    // Manejo de la foto de perfil
+    const profilePhotoInput = document.getElementById('profilePhotoInput');
+    const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+    const removePhotoBtn = document.getElementById('removePhotoBtn');
+    const profileImagePreview = document.getElementById('profileImagePreview');
+    const largeInitials = document.getElementById('largeInitials');
+    const userInitialsNav = document.getElementById('userInitials');
 
-function openDeleteModal() { 
-    const modal = document.getElementById('deleteModal');
-    if (modal) modal.style.display = 'flex'; 
-}
-function closeDeleteModal() { 
-    const modal = document.getElementById('deleteModal');
-    if (modal) modal.style.display = 'none'; 
-}
-function confirmDeleteAccount() {
-    alert('[Simulación] Solicitud de eliminación registrada.');
-    closeDeleteModal();
-}
+    function applyPhoto(dataUrl) {
+        if (dataUrl) {
+            profileImagePreview.src = dataUrl;
+            profileImagePreview.style.display = 'block';
+            largeInitials.style.display = 'none';
 
-function toggleThemeProfile() {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('fiao_theme', isDark ? 'dark' : 'light');
-}
+            // Actualizar también en la barra de navegación superior
+            userInitialsNav.innerHTML = `<img src="${dataUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
+            removePhotoBtn.style.display = 'inline-block';
+        } else {
+            profileImagePreview.src = '';
+            profileImagePreview.style.display = 'none';
+            largeInitials.style.display = 'block';
+            updateInitials(document.getElementById('profFullName').value);
+            removePhotoBtn.style.display = 'none';
+        }
+    }
 
-function toggleNotifications(event) {
-    console.log('Notificaciones:', event.target.checked);
-}
+    if (savedPhoto) {
+        applyPhoto(savedPhoto);
+    }
+
+    uploadPhotoBtn.addEventListener('click', () => {
+        profilePhotoInput.click();
+    });
+
+    profilePhotoInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const base64String = event.target.result;
+                localStorage.setItem('fiao_profile_photo', base64String);
+                applyPhoto(base64String);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    removePhotoBtn.addEventListener('click', () => {
+        localStorage.removeItem('fiao_profile_photo');
+        applyPhoto(null);
+    });
+
+    // 2. Guardar cambios del perfil
+    const profileUpdateForm = document.getElementById('profileUpdateForm');
+    profileUpdateForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newName = document.getElementById('profFullName').value.trim();
+        const newEmail = document.getElementById('profEmail').value.trim();
+        const newPhone = document.getElementById('profPhone').value.trim();
+        const newStore = document.getElementById('profStoreName').value.trim();
+
+        localStorage.setItem('fiao_profile_name', newName);
+        localStorage.setItem('fiao_profile_email', newEmail);
+        localStorage.setItem('fiao_profile_phone', newPhone);
+        localStorage.setItem('fiao_profile_store', newStore);
+        localStorage.setItem('fia_user_name', newName);
+
+        document.getElementById('profileDisplayName').textContent = newName;
+        document.getElementById('profileStoreNameText').textContent = newStore;
+        
+        if (!localStorage.getItem('fiao_profile_photo')) {
+            updateInitials(newName);
+        }
+
+        alert('Profile successfully updated!');
+    });
+
+    // 3. Sistema de Traducción y Tema Oscuro
+    const langBtn = document.getElementById('lang-btn');
+    let currentLang = localStorage.getItem('fia_lang') || 'EN';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        if (langBtn) langBtn.textContent = lang === 'EN' ? 'ES' : 'EN';
+        localStorage.setItem('fia_lang', lang);
+
+        document.querySelectorAll('[data-en]').forEach(el => {
+            const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
+            if (translation) {
+                el.textContent = translation;
+            }
+        });
+    }
+    setLanguage(currentLang);
+
+    if (langBtn) {
+        langBtn.addEventListener('click', () => setLanguage(currentLang === 'EN' ? 'ES' : 'EN'));
+    }
+
+    const themeBtn = document.getElementById('theme-btn');
+    if (localStorage.getItem('fia_theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('fia_theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+        });
+    }
+
+    const profileToggle = document.getElementById('profileToggle');
+    const profileDropdown = document.getElementById('profileDropdown');
+    profileToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        profileDropdown.classList.toggle('active');
+    });
+    window.addEventListener('click', () => profileDropdown.classList.remove('active'));
+});
