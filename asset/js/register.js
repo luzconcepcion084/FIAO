@@ -1,42 +1,53 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const typeOwner = document.getElementById('type-owner');
-    const typeCustomer = document.getElementById('type-customer');
-    const businessNameGroup = document.getElementById('business-name-group');
-    const businessNameInput = document.getElementById('businessname');
+    // 1. Cargar datos guardados si existen en localStorage
+    const savedName = localStorage.getItem('fiao_profile_name') || "Luz Concepción";
+    const savedEmail = localStorage.getItem('fiao_profile_email') || "luz.concepcion@fiao-app.com";
+    const savedPhone = localStorage.getItem('fiao_profile_phone') || "+507 6000-0000";
+    const savedStore = localStorage.getItem('fiao_profile_store') || "Minisúper El Ahorro";
 
-    if (typeOwner && typeCustomer && businessNameGroup) {
-        typeOwner.addEventListener('click', () => {
-            typeOwner.classList.add('active');
-            typeCustomer.classList.remove('active');
-            businessNameGroup.style.display = 'block';
-            businessNameInput.setAttribute('required', 'true');
-        });
+    document.getElementById('profFullName').value = savedName;
+    document.getElementById('profEmail').value = savedEmail;
+    document.getElementById('profPhone').value = savedPhone;
+    document.getElementById('profStoreName').value = savedStore;
 
-        typeCustomer.addEventListener('click', () => {
-            typeCustomer.classList.add('active');
-            typeOwner.classList.remove('active');
-            businessNameGroup.style.display = 'none';
-            businessNameInput.removeAttribute('required');
-            businessNameInput.value = ''; 
-        });
-    }
+    document.getElementById('profileDisplayName').textContent = savedName;
+    document.getElementById('profileStoreNameText').textContent = savedStore;
 
-    function setupTogglePassword(toggleId, inputId) {
-        const toggleBtn = document.getElementById(toggleId);
-        const inputField = document.getElementById(inputId);
-        if (toggleBtn && inputField) {
-            toggleBtn.addEventListener('click', () => {
-                const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
-                inputField.setAttribute('type', type);
-                toggleBtn.classList.toggle('fa-eye');
-                toggleBtn.classList.toggle('fa-eye-slash');
-            });
+    // Calcular iniciales
+    function updateInitials(name) {
+        const parts = name.trim().split(' ');
+        let initials = parts[0] ? parts[0][0] : 'L';
+        if (parts.length > 1) {
+            initials += parts[1][0];
         }
+        initials = initials.toUpperCase();
+        document.getElementById('userInitials').textContent = initials;
+        document.getElementById('largeInitials').textContent = initials;
     }
+    updateInitials(savedName);
 
-    setupTogglePassword('togglePassword', 'password');
-    setupTogglePassword('toggleConfirmPassword', 'confirmpassword');
+    // 2. Guardar cambios del perfil
+    const profileUpdateForm = document.getElementById('profileUpdateForm');
+    profileUpdateForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newName = document.getElementById('profFullName').value.trim();
+        const newEmail = document.getElementById('profEmail').value.trim();
+        const newPhone = document.getElementById('profPhone').value.trim();
+        const newStore = document.getElementById('profStoreName').value.trim();
 
+        localStorage.setItem('fiao_profile_name', newName);
+        localStorage.setItem('fiao_profile_email', newEmail);
+        localStorage.setItem('fiao_profile_phone', newPhone);
+        localStorage.setItem('fiao_profile_store', newStore);
+
+        document.getElementById('profileDisplayName').textContent = newName;
+        document.getElementById('profileStoreNameText').textContent = newStore;
+        updateInitials(newName);
+
+        alert('Profile successfully updated!');
+    });
+
+    // 3. Sistema de Traducción y Tema Oscuro
     const langBtn = document.getElementById('lang-btn');
     let currentLang = localStorage.getItem('fia_lang') || 'EN';
 
@@ -48,55 +59,32 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-en]').forEach(el => {
             const translation = el.getAttribute(`data-${lang.toLowerCase()}`);
             if (translation) {
-                if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
-                    el.placeholder = translation;
-                } else {
-                    el.textContent = translation;
-                }
+                el.textContent = translation;
             }
         });
     }
-
     setLanguage(currentLang);
 
     if (langBtn) {
-        langBtn.addEventListener('click', () => {
-            const nextLang = currentLang === 'EN' ? 'ES' : 'EN';
-            setLanguage(nextLang);
-        });
+        langBtn.addEventListener('click', () => setLanguage(currentLang === 'EN' ? 'ES' : 'EN'));
     }
 
     const themeBtn = document.getElementById('theme-btn');
-    const currentTheme = localStorage.getItem('fia_theme') || 'light';
-
-    if (currentTheme === 'dark') {
+    if (localStorage.getItem('fia_theme') === 'dark') {
         document.body.classList.add('dark-theme');
     }
-
     if (themeBtn) {
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
-            const isDark = document.body.classList.contains('dark-theme');
-            localStorage.setItem('fia_theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('fia_theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
         });
     }
 
-    const registerForm = document.getElementById('register-form');
-    if (registerForm) {
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const isOwner = typeOwner.classList.contains('active');
-            const fullName = document.getElementById('fullname').value.trim();
-            
-            // Guardamos el nombre tal cual lo escribiste y marcamos que es usuario NUEVO
-            localStorage.setItem('fia_user_name', fullName);
-            localStorage.setItem('fia_is_new_user', 'true'); 
-            
-            if (isOwner) {
-                window.location.href = 'owner-dashboard.html';
-            } else {
-                window.location.href = 'customer-dashboard.html';
-            }
-        });
-    }
+    const profileToggle = document.getElementById('profileToggle');
+    const profileDropdown = document.getElementById('profileDropdown');
+    profileToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        profileDropdown.classList.toggle('active');
+    });
+    window.addEventListener('click', () => profileDropdown.classList.remove('active'));
 });
