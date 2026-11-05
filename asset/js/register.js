@@ -1,53 +1,88 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Cargar datos guardados si existen en localStorage
-    const savedName = localStorage.getItem('fiao_profile_name') || "Luz Concepción";
-    const savedEmail = localStorage.getItem('fiao_profile_email') || "luz.concepcion@fiao-app.com";
-    const savedPhone = localStorage.getItem('fiao_profile_phone') || "+507 6000-0000";
-    const savedStore = localStorage.getItem('fiao_profile_store') || "Minisúper El Ahorro";
+    // 1. Selector de Tipo de Cuenta (Business Owner / Customer)
+    const typeOwner = document.getElementById('type-owner');
+    const typeCustomer = document.getElementById('type-customer');
+    const businessGroup = document.getElementById('business-name-group');
 
-    document.getElementById('profFullName').value = savedName;
-    document.getElementById('profEmail').value = savedEmail;
-    document.getElementById('profPhone').value = savedPhone;
-    document.getElementById('profStoreName').value = savedStore;
+    if (typeOwner && typeCustomer) {
+        typeOwner.addEventListener('click', () => {
+            typeOwner.classList.add('active');
+            typeCustomer.classList.remove('active');
+            if (businessGroup) businessGroup.style.display = 'block';
+        });
 
-    document.getElementById('profileDisplayName').textContent = savedName;
-    document.getElementById('profileStoreNameText').textContent = savedStore;
-
-    // Calcular iniciales
-    function updateInitials(name) {
-        const parts = name.trim().split(' ');
-        let initials = parts[0] ? parts[0][0] : 'L';
-        if (parts.length > 1) {
-            initials += parts[1][0];
-        }
-        initials = initials.toUpperCase();
-        document.getElementById('userInitials').textContent = initials;
-        document.getElementById('largeInitials').textContent = initials;
+        typeCustomer.addEventListener('click', () => {
+            typeCustomer.classList.add('active');
+            typeOwner.classList.remove('active');
+            if (businessGroup) businessGroup.style.display = 'none';
+        });
     }
-    updateInitials(savedName);
 
-    // 2. Guardar cambios del perfil
-    const profileUpdateForm = document.getElementById('profileUpdateForm');
-    profileUpdateForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const newName = document.getElementById('profFullName').value.trim();
-        const newEmail = document.getElementById('profEmail').value.trim();
-        const newPhone = document.getElementById('profPhone').value.trim();
-        const newStore = document.getElementById('profStoreName').value.trim();
+    // 2. Funcionalidad para mostrar/ocultar contraseña (los ojitos)
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
 
-        localStorage.setItem('fiao_profile_name', newName);
-        localStorage.setItem('fiao_profile_email', newEmail);
-        localStorage.setItem('fiao_profile_phone', newPhone);
-        localStorage.setItem('fiao_profile_store', newStore);
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.classList.toggle('fa-eye');
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+    }
 
-        document.getElementById('profileDisplayName').textContent = newName;
-        document.getElementById('profileStoreNameText').textContent = newStore;
-        updateInitials(newName);
+    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+    const confirmPasswordInput = document.getElementById('confirmpassword');
 
-        alert('Profile successfully updated!');
-    });
+    if (toggleConfirmPassword && confirmPasswordInput) {
+        toggleConfirmPassword.addEventListener('click', () => {
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+            toggleConfirmPassword.classList.toggle('fa-eye');
+            toggleConfirmPassword.classList.toggle('fa-eye-slash');
+        });
+    }
 
-    // 3. Sistema de Traducción y Tema Oscuro
+    // 3. CAPTURAR REGISTRO, VALIDAR Y REDIRIGIR SEGÚN EL TIPO SELECCIONADO
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Evita que la página se recargue
+
+            const fullName = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmpassword').value;
+            const businessNameInput = document.getElementById('businessname');
+            const businessName = businessNameInput ? businessNameInput.value.trim() : '';
+
+            // Validar que las contraseñas coincidan
+            if (password !== confirmPassword) {
+                alert('Passwords do not match. Please check them.');
+                return;
+            }
+
+            // Identificar explícitamente qué opción está activa en pantalla
+            const isOwnerActive = typeOwner ? typeOwner.classList.contains('active') : true;
+
+            // Guardar los datos en el localStorage para que el Perfil los lea
+            localStorage.setItem('fiao_profile_name', fullName);
+            localStorage.setItem('fiao_profile_email', email);
+            localStorage.setItem('fiao_profile_phone', phone);
+            localStorage.setItem('fiao_profile_store', isOwnerActive ? (businessName || 'Mi Negocio') : 'Customer Account');
+            localStorage.setItem('fiao_account_type', isOwnerActive ? 'owner' : 'customer');
+
+            // Redirección inteligente y exacta
+            if (isOwnerActive) {
+                window.location.href = 'owner-dashboard.html'; // Panel del Dueño
+            } else {
+                window.location.href = 'index.html'; // O tu vista de cliente si tienes otra página específica
+            }
+        });
+    }
+
+    // 4. Idioma y Tema Oscuro
     const langBtn = document.getElementById('lang-btn');
     let currentLang = localStorage.getItem('fia_lang') || 'EN';
 
@@ -79,12 +114,4 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('fia_theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
         });
     }
-
-    const profileToggle = document.getElementById('profileToggle');
-    const profileDropdown = document.getElementById('profileDropdown');
-    profileToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        profileDropdown.classList.toggle('active');
-    });
-    window.addEventListener('click', () => profileDropdown.classList.remove('active'));
 });
